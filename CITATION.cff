@@ -1,0 +1,20 @@
+cff-version: 1.2.0
+title: awENT
+message: >-
+  If you use this software, please cite it using the
+  metadata from this file.
+type: software
+authors:
+  - name: LiterateInk
+    website: "https://literate.ink"
+    email: contact@literate.ink
+repository-code: 'https://github.com/LiterateInk/awENT'
+url: 'https://docs.literate.ink/awent'
+repository-artifact: 'https://www.npmjs.com/package/awent'
+abstract: >-
+  An awmazing API wrapper for iENT.
+keywords:
+  - ient
+  - api
+  - wrapper
+license: GPL-3.0-or-later
