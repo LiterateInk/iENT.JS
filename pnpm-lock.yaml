@@ -11,6 +11,9 @@ importers:
       '@literate.ink/utilities':
         specifier: 1.0.0-11713907881.1
         version: 1.0.0-11713907881.1
+      '@scure/base':
+        specifier: ^1.2.1
+        version: 1.2.1
     devDependencies:
       '@stylistic/eslint-plugin':
         specifier: ^2.7.2
@@ -381,6 +384,9 @@ packages:
     resolution: {integrity: sha512-GsFvcTZ7Yj9k94Qm0qgav7pxmQ7lQDR9NjoelRaxeV1UF6JSDfanR/2tHZ8hS7Ps4KPIVf5AElYPRPmN/Q0ZkQ==}
     cpu: [x64]
     os: [win32]
+
+  '@scure/base@1.2.1':
+    resolution: {integrity: sha512-DGmGtC8Tt63J5GfHgfl5CuAXh96VF/LD8K9Hr/Gv0J2lAoRGlPOMpqMpMbCTOoOJMZCk2Xt+DskdDyn6dEFdzQ==}
 
   '@stylistic/eslint-plugin@2.12.1':
     resolution: {integrity: sha512-fubZKIHSPuo07FgRTn6S4Nl0uXPRPYVNpyZzIDGfp7Fny6JjNus6kReLD7NI380JXi4HtUTSOZ34LBuNPO1XLQ==}
@@ -1294,6 +1300,8 @@ snapshots:
 
   '@rollup/rollup-win32-x64-msvc@4.29.0':
     optional: true
+
+  '@scure/base@1.2.1': {}
 
   '@stylistic/eslint-plugin@2.12.1(eslint@9.17.0)(typescript@5.7.2)':
     dependencies:
