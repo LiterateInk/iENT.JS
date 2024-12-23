@@ -1,8 +1,9 @@
 import type { CheerioAPI } from "cheerio";
 
-import type { Homepage, TimetableEvent } from "~/models";
-import { onlyNumbers } from "~/core/only-numbers";
-import { nearest } from "~/core/nearest";
+import type { Homepage } from "~/models";
+import { mapHoursToDate } from "~/core/map-hours-to-date";
+import { decodeTimetableContent } from "./timetable-content";
+import { decodeTimetableHours } from "./timetable-hours";
 
 export const decodeHomepage = ($: CheerioAPI): Homepage => {
   const homepage: Homepage = {
@@ -41,107 +42,11 @@ export const decodeHomepage = ($: CheerioAPI): Homepage => {
         }
 
         // positions of each hours in the timetable
-        const hoursSlots: number[] = [];
+        const { hours, slots } = decodeTimetableHours($);
+        homepage.timetable.hours = mapHoursToDate(hours, homepage.timetable.date);
 
-        {
-          // e.g.: ["30", "8h", "30", "9h", "30", "10h"]
-          const hours = body.find(".txt_planning_heure").map((_, element) => {
-            const hour = $(element);
-
-            // "top:0px;text-align:right;font-size:8px;" -> 0
-            const slot = onlyNumbers(hour.attr("style")!.split(";")[0]);
-            hoursSlots.push(slot);
-
-            return hour.text().trim();
-          }).toArray();
-
-          // add the hour to the first element
-          // e.g.: ["30", "8h"] -> ["7h30", "8h"]
-          if (!hours[0].includes("h")) {
-            hours[0] = `${Number(hours[1].replace("h", "")) - 1}h${hours[0]}`;
-          }
-
-          // add the hour to every other elements
-          // e.g.: ["7h", "30", "8h", "30"] -> ["7h", "7h30", "8h", "8h30"]
-          for (let index = 0; index < hours.length; index += 1) {
-            if (hours[index].includes("h")) continue;
-            if (typeof hours[index - 1] === "undefined") break;
-
-            hours[index] = `${hours[index - 1].split("h")[0]}h${hours[index]}`;
-          }
-
-          // map the hours to a Date object for easier manipulation
-          const mapped = hours.map((hour) => {
-            const [hours, minutes] = hour.split("h").map(Number);
-
-            // use the timetable date and set the hours and minutes
-            const date = new Date(homepage.timetable.date);
-            date.setHours(hours, minutes);
-
-            return date;
-          });
-
-          homepage.timetable.hours = mapped;
-        }
-
-        {
-          const day = body.find(".div_jour");
-          const events: TimetableEvent[] = [];
-
-          day.children(".sequence").each((_, element) => {
-            const event = $(element);
-            const text = event.text().trim();
-
-            // e.g.: "top:63px; height:81px;background: #f00f00;"
-            const styles = event.attr("style")!.trim().split(";").filter(Boolean);
-
-            // "background:#f00f00" -> "#f00f00"
-            const colorHex = styles.pop()!.split(":")[1].trim();
-
-            if (text === "Entreprise") {
-              events.push({
-                type: "work",
-                colorHex,
-                // the first and last hours of the day...
-                // that's how they show it in the timetable.
-                startDate: homepage.timetable.hours[0],
-                endDate: homepage.timetable.hours[homepage.timetable.hours.length - 1]
-              });
-            }
-            else {
-              // "height:81px" -> 81
-              const duration = onlyNumbers(styles.pop()!);
-              // "top:63px" -> 63
-              const startSlot = onlyNumbers(styles.pop()!);
-              // approximation because the value is not exactly on slots
-              const endSlot = nearest(startSlot + duration, hoursSlots);
-
-              // we have to do `-1` because of the way the offset is done in CSS
-              const startDate = homepage.timetable.hours[hoursSlots.indexOf(startSlot) - 1];
-              const endDate = homepage.timetable.hours[hoursSlots.indexOf(endSlot) - 1];
-
-              // scrap details from the tooltip
-              const [title, teacherName, description] = day
-                .find(`#${event.attr("id")!}_bulle`)
-                .children().map((_, element) => $(element).text().trim())
-                .toArray();
-
-              events.push({
-                type: "lesson",
-                colorHex,
-                startDate,
-                endDate,
-                title,
-                teacherName,
-                description
-              });
-            }
-          });
-
-          // sort the events by start date
-          events.sort((a, b) => a.startDate.getTime() - b.startDate.getTime());
-          homepage.timetable.events = events;
-        }
+        const events = decodeTimetableContent($, body, slots, homepage.timetable.hours);
+        homepage.timetable.events = events;
 
         break;
       }
