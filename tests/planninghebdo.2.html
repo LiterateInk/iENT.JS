@@ -1,0 +1,842 @@
+<!DOCTYPE html>
+<html lang="fr">
+  <head>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=no"/>
+    <meta name="Robots" content="nofollow,noindex">
+    <meta charset="utf-8">
+    <base href="https://www.ient.fr/">
+    <title>iEnt: Planning semaine</title>
+    <link rel="icon" type="image/png" href="/img/favicon.gif">
+    <link rel="apple-touch-icon" type="image/png" href="/img/apple-touch-icon.png">
+    <link rel="stylesheet" href="/css/bootstrap.min.css"/>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <!--        <link rel="stylesheet" href="/css/bootstrap-theme.css" />-->
+    <!--        <link href="https://fonts.googleapis.com/css?family=Lato" rel="stylesheet" type="text/css">-->
+    <script type="text/javascript" src="/js/popper.min.js"></script>
+    <script type="text/javascript" src="/js/jquery.min.js"></script>
+    <script type="text/javascript" src="/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="/js/interface.js"></script>
+    <link rel="stylesheet" href="/css/ient.css?v=1710439726"/>
+  </head>
+  <body>
+    <nav class="navbar navbar-custom fixed-top navbar-expand-md">
+      <a class="navbar-brand" href="/welcome" style="padding-top:2px">
+        <img src="/img/mini-logo.png" style="height:45px">
+      </a>
+      <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#navbar" aria-controls="navbar">
+        <span class="sr-only">Ouvrir menu</span>
+        &#x2630;
+      </button>
+      <div id="navbar" class="collapse navbar-collapse">
+        <ul class="navbar-nav">
+          <li class="dropdown nav-item">
+            <a href="#" class="dropdown-toggle nav-link" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              <span class="fa fa-chart-bar" aria-hidden="true" style="padding-right:10px"></span>
+              <span class="d-md-none d-lg-inline-block">Notes</span>
+            </a>
+            <ul class="dropdown-menu">
+              <li class="dropdown  dropdown-item">
+                <a href="/notes/">Notes</a>
+              </li>
+              <li class="dropdown  dropdown-item">
+                <a href="/notes/bulletin">Bulletins</a>
+              </li>
+            </ul>
+          </li>
+          <li class="dropdown nav-item">
+            <a href="#about" class="dropdown-toggle nav-link" data-toggle="dropdown" aria-expanded="false">
+              <span class="fa fa-calendar" aria-hidden="true" style="padding-right:10px"></span>
+              <span class="d-md-none d-lg-inline-block">Plannings</span>
+              <span class="caret" style="margin-left:8px"></span>
+            </a>
+            <ul class="dropdown-menu">
+              <li class="dropdown dropdown-item">
+                <a href="/planningannuel/">Planning annuel</a>
+              </li>
+              <li class="dropdown dropdown-item">
+                <a href="/planninghebdo/">Planning semaine</a>
+              </li>
+              <li class="dropdown dropdown-item">
+                <a href="/cahiertexte/contenu">Cahier de texte - Contenu </a>
+              </li>
+              <li class="dropdown dropdown-item">
+                <a href="/cahiertexte/travail">Cahier de texte - Travail </a>
+              </li>
+            </ul>
+          </li>
+          <li class="dropdown nav-item">
+            <a href="#contact" class="dropdown-toggle nav-link" data-toggle="dropdown" aria-expanded="false">
+              <span class="fa fa-graduation-cap " aria-hidden="true" style="padding-right:10px"></span>
+              <span class="d-md-none d-lg-inline-block">Vie scolaire</span>
+              <span class="caret" style="margin-left:8px"></span>
+            </a>
+            <ul class="dropdown-menu">
+              <li class="dropdown dropdown-item">
+                <a href="/trombinoscope">Trombinoscope</a>
+              <li class="dropdown dropdown-item">
+                <a href="/absences">Absences</a>
+              <li class="dropdown dropdown-item">
+                <a href="/avertissements">Avertissements</a>
+              <li class="dropdown dropdown-item">
+                <a href="/menus">Menus</a>
+            </ul>
+          </li>
+          <li class="dropdown nav-item">
+            <a href="#" class="dropdown-toggle nav-link" data-toggle="dropdown" aria-expanded="false">
+              <span class="fa fa-envelope" aria-hidden="true" style="padding-right:10px"></span>
+              <span class="d-md-none d-lg-inline-block">Messagerie</span>
+              <span class="badge" style="margin-right:6px;margin-left:6px;background-color:#e94b3b;display:none;" id="non_lu_global">0</span>
+              <span class="caret" style="margin-left:8px"></span>
+            </a>
+            <ul class="dropdown-menu">
+              <li class="dropdown  dropdown-item">
+                <a href="/messagerie/compose">Nouveau message</a>
+              </li>
+              <li class="dropdown  dropdown-item">
+                <a href="/messagerie/">Mes messages</a>
+              </li>
+              <li class="dropdown  dropdown-item">
+                <a href="/messagerie/inbox/?rep=2">Messages envoyés</a>
+              </li>
+              <li class="dropdown  dropdown-item">
+                <a href="/messagerie/inbox/?rep=4">Corbeille</a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-item">
+            <a href="/params/" class="nav-link">
+              <span class="fa fa-wrench" aria-hidden="true" style="padding-right:10px"></span>
+              <span class="d-md-none d-lg-none d-xl-inline-block">Paramétrages</span>
+            </a>
+          </li>
+          <li title="Liens" class="dropdown nav-item">
+            <a href="#" class="dropdown-toggle nav-link" data-toggle="dropdown" aria-expanded="false">
+              <span class="fa fa-link" aria-hidden="true" style="padding-right:10px"></span>
+              <span class="d-md-none d-lg-none d-xl-inline-block">Liens</span>
+              <span class="caret" style="margin-left:8px"></span>
+            </a>
+            <ul class="dropdown-menu">
+              <li class="dropdown dropdown-item"><a href="https://literate.ink/" target="_blank"></a> </li>
+              <li class="dropdown dropdown-item"><a href="https://github.com/LiterateInk" target="_blank"></a> </li>
+          </ul>
+        </ul>
+        <ul class="nav navbar-nav ml-auto">
+          <li class="dropdown nav-item">
+            <a href="#about" class="dropdown-toggle  nav-link" data-toggle="dropdown" title="Student LITERATEINK  ">
+              <span class="fa fa-user" aria-hidden="true" style="padding-right:10px;padding-left:10px;font-size:1.5em;"></span>
+              <span class="d-md-none hidden-lg">Student LITERATEINK  </span>
+              <span class="caret" style="margin-left:8px"></span>
+            </a>
+            <ul class="dropdown-menu dropdown-menu-right">
+              <li class="dropdown-header navbar-custom  dropdown-item">Student LITERATEINK </li>
+              <li role="separator" class="divider  dropdown-item"></li>
+            </ul>
+          </li>
+          <li class="nav-item">
+            <a href="/login/logout" class="nav-link">
+              <span class="fa fa-power-off " aria-hidden="true" style="padding-right:10px;font-size:1.5em;"></span>
+            </a>
+          </li>
+      </div>
+      <!--/.nav-collapse -->
+    </nav>
+    <!-- contenu -->
+    <div class='container-lg container-notes'>
+      <div class='card card-primary'>
+        <div class='card-header'>
+          <span class="fa fa-calendar-alt" aria-hidden="true"></span>
+          Planning semaine
+            
+        </div>
+        <div class='card-body five-cols'>
+          <div class='col-md-12 text-center'>
+            <div class='row periode'>
+              <div class='col-1 col-sm-3'>
+                <a href="/planninghebdo?date=2024-05-20">
+                  <span class='fa fa-chevron-left'></span>
+                </a>
+              </div>
+              <div class='col-10 col-sm-6 '>Semaine du 27/05 au 02/06/2024 
+
+                                </div>
+              <div class='col-1 col-sm-3'>
+                <a href="/planninghebdo?date=2024-06-03">
+                  <span class='fa fa-chevron-right'></span>
+                </a>
+              </div>
+            </div>
+          </div>
+          <div>
+            <div class="heures" style="width:30px;float:left;">
+              <div>
+                <div class="entete-jour_planning"></div>
+                <div class="entete-jour_services"></div>
+                <div class="div_planning_heure" style="height:546px;">
+                  <div style='top:0px;text-align:right;font-size:8px;' class='txt_planning_heure'>30</div>
+                  <div style='top:21px;font-weight:bold;font-size:10px;' class='txt_planning_heure'>8h</div>
+                  <div style='top:42px;text-align:right;font-size:8px;' class='txt_planning_heure'>30</div>
+                  <div style='top:63px;font-weight:bold;font-size:10px;' class='txt_planning_heure'>9h</div>
+                  <div style='top:84px;text-align:right;font-size:8px;' class='txt_planning_heure'>30</div>
+                  <div style='top:105px;font-weight:bold;font-size:10px;' class='txt_planning_heure'>10h</div>
+                  <div style='top:126px;text-align:right;font-size:8px;' class='txt_planning_heure'>30</div>
+                  <div style='top:147px;font-weight:bold;font-size:10px;' class='txt_planning_heure'>11h</div>
+                  <div style='top:168px;text-align:right;font-size:8px;' class='txt_planning_heure'>30</div>
+                  <div style='top:189px;font-weight:bold;font-size:10px;' class='txt_planning_heure'>12h</div>
+                  <div style='top:210px;text-align:right;font-size:8px;' class='txt_planning_heure'>30</div>
+                  <div style='top:231px;font-weight:bold;font-size:10px;' class='txt_planning_heure'>13h</div>
+                  <div style='top:252px;text-align:right;font-size:8px;' class='txt_planning_heure'>30</div>
+                  <div style='top:273px;font-weight:bold;font-size:10px;' class='txt_planning_heure'>14h</div>
+                  <div style='top:294px;text-align:right;font-size:8px;' class='txt_planning_heure'>30</div>
+                  <div style='top:315px;font-weight:bold;font-size:10px;' class='txt_planning_heure'>15h</div>
+                  <div style='top:336px;text-align:right;font-size:8px;' class='txt_planning_heure'>30</div>
+                  <div style='top:357px;font-weight:bold;font-size:10px;' class='txt_planning_heure'>16h</div>
+                  <div style='top:378px;text-align:right;font-size:8px;' class='txt_planning_heure'>30</div>
+                  <div style='top:399px;font-weight:bold;font-size:10px;' class='txt_planning_heure'>17h</div>
+                  <div style='top:420px;text-align:right;font-size:8px;' class='txt_planning_heure'>30</div>
+                  <div style='top:441px;font-weight:bold;font-size:10px;' class='txt_planning_heure'>18h</div>
+                  <div style='top:462px;text-align:right;font-size:8px;' class='txt_planning_heure'>30</div>
+                  <div style='top:483px;font-weight:bold;font-size:10px;' class='txt_planning_heure'>19h</div>
+                  <div style='top:504px;text-align:right;font-size:8px;' class='txt_planning_heure'>30</div>
+                </div>
+              </div>
+              <div class="d-block d-sm-none">
+                <div class="entete-jour_planning"></div>
+                <div class="entete-jour_services"></div>
+                <div class="div_planning_heure" style="height:546px;">
+                  <div style='top:0px;text-align:right;font-size:8px;' class='txt_planning_heure'>30</div>
+                  <div style='top:21px;font-weight:bold;font-size:10px;' class='txt_planning_heure'>8h</div>
+                  <div style='top:42px;text-align:right;font-size:8px;' class='txt_planning_heure'>30</div>
+                  <div style='top:63px;font-weight:bold;font-size:10px;' class='txt_planning_heure'>9h</div>
+                  <div style='top:84px;text-align:right;font-size:8px;' class='txt_planning_heure'>30</div>
+                  <div style='top:105px;font-weight:bold;font-size:10px;' class='txt_planning_heure'>10h</div>
+                  <div style='top:126px;text-align:right;font-size:8px;' class='txt_planning_heure'>30</div>
+                  <div style='top:147px;font-weight:bold;font-size:10px;' class='txt_planning_heure'>11h</div>
+                  <div style='top:168px;text-align:right;font-size:8px;' class='txt_planning_heure'>30</div>
+                  <div style='top:189px;font-weight:bold;font-size:10px;' class='txt_planning_heure'>12h</div>
+                  <div style='top:210px;text-align:right;font-size:8px;' class='txt_planning_heure'>30</div>
+                  <div style='top:231px;font-weight:bold;font-size:10px;' class='txt_planning_heure'>13h</div>
+                  <div style='top:252px;text-align:right;font-size:8px;' class='txt_planning_heure'>30</div>
+                  <div style='top:273px;font-weight:bold;font-size:10px;' class='txt_planning_heure'>14h</div>
+                  <div style='top:294px;text-align:right;font-size:8px;' class='txt_planning_heure'>30</div>
+                  <div style='top:315px;font-weight:bold;font-size:10px;' class='txt_planning_heure'>15h</div>
+                  <div style='top:336px;text-align:right;font-size:8px;' class='txt_planning_heure'>30</div>
+                  <div style='top:357px;font-weight:bold;font-size:10px;' class='txt_planning_heure'>16h</div>
+                  <div style='top:378px;text-align:right;font-size:8px;' class='txt_planning_heure'>30</div>
+                  <div style='top:399px;font-weight:bold;font-size:10px;' class='txt_planning_heure'>17h</div>
+                  <div style='top:420px;text-align:right;font-size:8px;' class='txt_planning_heure'>30</div>
+                  <div style='top:441px;font-weight:bold;font-size:10px;' class='txt_planning_heure'>18h</div>
+                  <div style='top:462px;text-align:right;font-size:8px;' class='txt_planning_heure'>30</div>
+                  <div style='top:483px;font-weight:bold;font-size:10px;' class='txt_planning_heure'>19h</div>
+                  <div style='top:504px;text-align:right;font-size:8px;' class='txt_planning_heure'>30</div>
+                </div>
+              </div>
+              <div class="d-block d-sm-none">
+                <div class="entete-jour_planning"></div>
+                <div class="entete-jour_services"></div>
+                <div class="div_planning_heure" style="height:546px;">
+                  <div style='top:0px;text-align:right;font-size:8px;' class='txt_planning_heure'>30</div>
+                  <div style='top:21px;font-weight:bold;font-size:10px;' class='txt_planning_heure'>8h</div>
+                  <div style='top:42px;text-align:right;font-size:8px;' class='txt_planning_heure'>30</div>
+                  <div style='top:63px;font-weight:bold;font-size:10px;' class='txt_planning_heure'>9h</div>
+                  <div style='top:84px;text-align:right;font-size:8px;' class='txt_planning_heure'>30</div>
+                  <div style='top:105px;font-weight:bold;font-size:10px;' class='txt_planning_heure'>10h</div>
+                  <div style='top:126px;text-align:right;font-size:8px;' class='txt_planning_heure'>30</div>
+                  <div style='top:147px;font-weight:bold;font-size:10px;' class='txt_planning_heure'>11h</div>
+                  <div style='top:168px;text-align:right;font-size:8px;' class='txt_planning_heure'>30</div>
+                  <div style='top:189px;font-weight:bold;font-size:10px;' class='txt_planning_heure'>12h</div>
+                  <div style='top:210px;text-align:right;font-size:8px;' class='txt_planning_heure'>30</div>
+                  <div style='top:231px;font-weight:bold;font-size:10px;' class='txt_planning_heure'>13h</div>
+                  <div style='top:252px;text-align:right;font-size:8px;' class='txt_planning_heure'>30</div>
+                  <div style='top:273px;font-weight:bold;font-size:10px;' class='txt_planning_heure'>14h</div>
+                  <div style='top:294px;text-align:right;font-size:8px;' class='txt_planning_heure'>30</div>
+                  <div style='top:315px;font-weight:bold;font-size:10px;' class='txt_planning_heure'>15h</div>
+                  <div style='top:336px;text-align:right;font-size:8px;' class='txt_planning_heure'>30</div>
+                  <div style='top:357px;font-weight:bold;font-size:10px;' class='txt_planning_heure'>16h</div>
+                  <div style='top:378px;text-align:right;font-size:8px;' class='txt_planning_heure'>30</div>
+                  <div style='top:399px;font-weight:bold;font-size:10px;' class='txt_planning_heure'>17h</div>
+                  <div style='top:420px;text-align:right;font-size:8px;' class='txt_planning_heure'>30</div>
+                  <div style='top:441px;font-weight:bold;font-size:10px;' class='txt_planning_heure'>18h</div>
+                  <div style='top:462px;text-align:right;font-size:8px;' class='txt_planning_heure'>30</div>
+                  <div style='top:483px;font-weight:bold;font-size:10px;' class='txt_planning_heure'>19h</div>
+                  <div style='top:504px;text-align:right;font-size:8px;' class='txt_planning_heure'>30</div>
+                </div>
+              </div>
+              <div class="d-block d-sm-none">
+                <div class="entete-jour_planning"></div>
+                <div class="entete-jour_services"></div>
+                <div class="div_planning_heure" style="height:546px;">
+                  <div style='top:0px;text-align:right;font-size:8px;' class='txt_planning_heure'>30</div>
+                  <div style='top:21px;font-weight:bold;font-size:10px;' class='txt_planning_heure'>8h</div>
+                  <div style='top:42px;text-align:right;font-size:8px;' class='txt_planning_heure'>30</div>
+                  <div style='top:63px;font-weight:bold;font-size:10px;' class='txt_planning_heure'>9h</div>
+                  <div style='top:84px;text-align:right;font-size:8px;' class='txt_planning_heure'>30</div>
+                  <div style='top:105px;font-weight:bold;font-size:10px;' class='txt_planning_heure'>10h</div>
+                  <div style='top:126px;text-align:right;font-size:8px;' class='txt_planning_heure'>30</div>
+                  <div style='top:147px;font-weight:bold;font-size:10px;' class='txt_planning_heure'>11h</div>
+                  <div style='top:168px;text-align:right;font-size:8px;' class='txt_planning_heure'>30</div>
+                  <div style='top:189px;font-weight:bold;font-size:10px;' class='txt_planning_heure'>12h</div>
+                  <div style='top:210px;text-align:right;font-size:8px;' class='txt_planning_heure'>30</div>
+                  <div style='top:231px;font-weight:bold;font-size:10px;' class='txt_planning_heure'>13h</div>
+                  <div style='top:252px;text-align:right;font-size:8px;' class='txt_planning_heure'>30</div>
+                  <div style='top:273px;font-weight:bold;font-size:10px;' class='txt_planning_heure'>14h</div>
+                  <div style='top:294px;text-align:right;font-size:8px;' class='txt_planning_heure'>30</div>
+                  <div style='top:315px;font-weight:bold;font-size:10px;' class='txt_planning_heure'>15h</div>
+                  <div style='top:336px;text-align:right;font-size:8px;' class='txt_planning_heure'>30</div>
+                  <div style='top:357px;font-weight:bold;font-size:10px;' class='txt_planning_heure'>16h</div>
+                  <div style='top:378px;text-align:right;font-size:8px;' class='txt_planning_heure'>30</div>
+                  <div style='top:399px;font-weight:bold;font-size:10px;' class='txt_planning_heure'>17h</div>
+                  <div style='top:420px;text-align:right;font-size:8px;' class='txt_planning_heure'>30</div>
+                  <div style='top:441px;font-weight:bold;font-size:10px;' class='txt_planning_heure'>18h</div>
+                  <div style='top:462px;text-align:right;font-size:8px;' class='txt_planning_heure'>30</div>
+                  <div style='top:483px;font-weight:bold;font-size:10px;' class='txt_planning_heure'>19h</div>
+                  <div style='top:504px;text-align:right;font-size:8px;' class='txt_planning_heure'>30</div>
+                </div>
+              </div>
+              <div class="d-block d-sm-none">
+                <div class="entete-jour_planning"></div>
+                <div class="entete-jour_services"></div>
+                <div class="div_planning_heure" style="height:546px;">
+                  <div style='top:0px;text-align:right;font-size:8px;' class='txt_planning_heure'>30</div>
+                  <div style='top:21px;font-weight:bold;font-size:10px;' class='txt_planning_heure'>8h</div>
+                  <div style='top:42px;text-align:right;font-size:8px;' class='txt_planning_heure'>30</div>
+                  <div style='top:63px;font-weight:bold;font-size:10px;' class='txt_planning_heure'>9h</div>
+                  <div style='top:84px;text-align:right;font-size:8px;' class='txt_planning_heure'>30</div>
+                  <div style='top:105px;font-weight:bold;font-size:10px;' class='txt_planning_heure'>10h</div>
+                  <div style='top:126px;text-align:right;font-size:8px;' class='txt_planning_heure'>30</div>
+                  <div style='top:147px;font-weight:bold;font-size:10px;' class='txt_planning_heure'>11h</div>
+                  <div style='top:168px;text-align:right;font-size:8px;' class='txt_planning_heure'>30</div>
+                  <div style='top:189px;font-weight:bold;font-size:10px;' class='txt_planning_heure'>12h</div>
+                  <div style='top:210px;text-align:right;font-size:8px;' class='txt_planning_heure'>30</div>
+                  <div style='top:231px;font-weight:bold;font-size:10px;' class='txt_planning_heure'>13h</div>
+                  <div style='top:252px;text-align:right;font-size:8px;' class='txt_planning_heure'>30</div>
+                  <div style='top:273px;font-weight:bold;font-size:10px;' class='txt_planning_heure'>14h</div>
+                  <div style='top:294px;text-align:right;font-size:8px;' class='txt_planning_heure'>30</div>
+                  <div style='top:315px;font-weight:bold;font-size:10px;' class='txt_planning_heure'>15h</div>
+                  <div style='top:336px;text-align:right;font-size:8px;' class='txt_planning_heure'>30</div>
+                  <div style='top:357px;font-weight:bold;font-size:10px;' class='txt_planning_heure'>16h</div>
+                  <div style='top:378px;text-align:right;font-size:8px;' class='txt_planning_heure'>30</div>
+                  <div style='top:399px;font-weight:bold;font-size:10px;' class='txt_planning_heure'>17h</div>
+                  <div style='top:420px;text-align:right;font-size:8px;' class='txt_planning_heure'>30</div>
+                  <div style='top:441px;font-weight:bold;font-size:10px;' class='txt_planning_heure'>18h</div>
+                  <div style='top:462px;text-align:right;font-size:8px;' class='txt_planning_heure'>30</div>
+                  <div style='top:483px;font-weight:bold;font-size:10px;' class='txt_planning_heure'>19h</div>
+                  <div style='top:504px;text-align:right;font-size:8px;' class='txt_planning_heure'>30</div>
+                </div>
+              </div>
+            </div>
+            <div style="margin-left:30px;">
+              <div class='row row-jour'>
+                <div class="col-sm-1 col-12">
+                  <div class="entete-jour_planning">Lundi 27 Mai    
+                            </div>
+                  <div id='mat_1_service_bulle' style='display:none;text-align:center'>
+                    <table style='width:100%;text-align:center;margin-bottom:10px;' cellpadding='0' cellspacing='0'>
+                      <tr>
+                        <td>
+</span>12:30 - 13:30 &nbsp;&nbsp;&nbsp;&nbsp;</td></tr>
+<tr>
+  <td>Mme ROUSSEAU </td>
+</tr>
+</table></div>
+<div id='mat_1_service' data-toggle='tooltip' class="entete-jour_services" style="text-align:center;">
+  &nbsp;<span class='fa fa-info-circle' style='font-size:17px;'></span>
+</div>
+<div class="div_jour" style="height:546px">
+  <div id='360956_simple_bulle' style='display:none;text-align:center;width:px'>
+    <div style='width:px;text-align:center'>MG3 Anglais </div>
+    <div style='width:px;text-align:center'>BRAM Mme BRAMARD </div>
+    <div style='width:px;text-align:center'></div>
+    <div style='width:px;text-align:center'></div>
+  </div>
+  <div id='360956_simple' class='sequence tooltip_haut ' data-toggle='tooltip' style='top:399px; height:39px;background:#C24202'>
+    <div class='txt_planning'>MG3 Anglais </div>
+    <div class='txt_planning'>Mme BRAMARD </div>
+  </div>
+  <div id='360321_simple_bulle' style='display:none;text-align:center;width:px'>
+    <div style='width:px;text-align:center'>MP2 Communication VER </div>
+    <div style='width:px;text-align:center'>LB Mme BARATIER </div>
+    <div style='width:px;text-align:center'></div>
+    <div style='width:px;text-align:center'></div>
+  </div>
+  <div id='360321_simple' class='sequence tooltip_bas ' data-toggle='tooltip' style='top:105px; height:35.5px;background:#f00f00'>
+    <div class='txt_planning'>MP2 Communication VER </div>
+    <div class='txt_planning'>Mme BARATIER </div>
+  </div>
+  <div id='360323_simple_bulle' style='display:none;text-align:center;width:px'>
+    <div style='width:px;text-align:center'>MP2 Communication VER </div>
+    <div style='width:px;text-align:center'>LB Mme BARATIER </div>
+    <div style='width:px;text-align:center'></div>
+    <div style='width:px;text-align:center'></div>
+  </div>
+  <div id='360323_simple' class='sequence tooltip_bas ' data-toggle='tooltip' style='top:189px; height:39px;background:#f00f00'>
+    <div class='txt_planning'>MP2 Communication VER </div>
+    <div class='txt_planning'>Mme BARATIER </div>
+  </div>
+  <div id='360322_simple_bulle' style='display:none;text-align:center;width:px'>
+    <div style='width:px;text-align:center'>MP2 Communication VER </div>
+    <div style='width:px;text-align:center'>LB Mme BARATIER </div>
+    <div style='width:px;text-align:center'></div>
+    <div style='width:px;text-align:center'></div>
+  </div>
+  <div id='360322_simple' class='sequence tooltip_bas ' data-toggle='tooltip' style='top:150.5px; height:35.5px;background:#f00f00'>
+    <div class='txt_planning'>MP2 Communication VER </div>
+    <div class='txt_planning'>Mme BARATIER </div>
+  </div>
+  <div id='360324_simple_bulle' style='display:none;text-align:center;width:px'>
+    <div style='width:px;text-align:center'>MP2 Communication VER </div>
+    <div style='width:px;text-align:center'>LB Mme BARATIER </div>
+    <div style='width:px;text-align:center'></div>
+    <div style='width:px;text-align:center'></div>
+  </div>
+  <div id='360324_simple' class='sequence tooltip_haut ' data-toggle='tooltip' style='top:273px; height:39px;background:#f00f00'>
+    <div class='txt_planning'>MP2 Communication VER </div>
+    <div class='txt_planning'>Mme BARATIER </div>
+  </div>
+  <div id='360325_simple_bulle' style='display:none;text-align:center;width:px'>
+    <div style='width:px;text-align:center'>MP2 Communication VER </div>
+    <div style='width:px;text-align:center'>LB Mme BARATIER </div>
+    <div style='width:px;text-align:center'></div>
+    <div style='width:px;text-align:center'></div>
+  </div>
+  <div id='360325_simple' class='sequence tooltip_haut ' data-toggle='tooltip' style='top:315px; height:35.5px;background:#f00f00'>
+    <div class='txt_planning'>MP2 Communication VER </div>
+    <div class='txt_planning'>Mme BARATIER </div>
+  </div>
+  <div id='360955_simple_bulle' style='display:none;text-align:center;width:px'>
+    <div style='width:px;text-align:center'>MG3 Anglais </div>
+    <div style='width:px;text-align:center'>BRAM Mme BRAMARD </div>
+    <div style='width:px;text-align:center'></div>
+    <div style='width:px;text-align:center'></div>
+  </div>
+  <div id='360955_simple' class='sequence tooltip_haut ' data-toggle='tooltip' style='top:360.5px; height:35.5px;background:#C24202'>
+    <div class='txt_planning'>MG3 Anglais </div>
+    <div class='txt_planning'>Mme BRAMARD </div>
+  </div>
+</div>
+</div>
+<div class="col-sm-1 col-12">
+  <div class="entete-jour_planning">Mardi 28 Mai    
+                            </div>
+  <div id='mat_2_service_bulle' style='display:none;text-align:center'>
+    <table style='width:100%;text-align:center;margin-bottom:10px;' cellpadding='0' cellspacing='0'>
+      <tr>
+        <td>
+</span>07:45 - 08:30 &nbsp;&nbsp;&nbsp;&nbsp;</td></tr>
+<tr>
+  <td>Mme TELUOB </td>
+</tr>
+</table>
+<table style='width:100%;text-align:center;margin-bottom:10px;' cellpadding='0' cellspacing='0'>
+  <tr>
+    <td>
+</span>12:30 - 13:30 &nbsp;&nbsp;&nbsp;&nbsp;</td></tr>
+<tr>
+  <td>Mme TELUOB </td>
+</tr>
+</table></div>
+<div id='mat_2_service' data-toggle='tooltip' class="entete-jour_services" style="text-align:center;">
+  &nbsp;<span class='fa fa-info-circle' style='font-size:17px;'></span>
+</div>
+<div class="div_jour" style="height:546px">
+  <div id='360676_simple_bulle' style='display:none;text-align:center;width:px'>
+    <div style='width:px;text-align:center'>MIP Animation </div>
+    <div style='width:px;text-align:center'>LB Mme BARATIER </div>
+    <div style='width:px;text-align:center'>MIP EVALUATION </div>
+    <div style='width:px;text-align:center'></div>
+  </div>
+  <div id='360676_simple' class='sequence tooltip_bas ' data-toggle='tooltip' style='top:63px; height:39px;background:#f00f00'>
+    <div class='txt_planning'>Animation </div>
+    <div class='txt_planning'>Mme BARATIER </div>
+  </div>
+  <div id='360677_simple_bulle' style='display:none;text-align:center;width:px'>
+    <div style='width:px;text-align:center'>MIP Animation </div>
+    <div style='width:px;text-align:center'>LB Mme BARATIER </div>
+    <div style='width:px;text-align:center'>MIP </div>
+    <div style='width:px;text-align:center'></div>
+  </div>
+  <div id='360677_simple' class='sequence tooltip_bas ' data-toggle='tooltip' style='top:105px; height:35.5px;background:#f00f00'>
+    <div class='txt_planning'>Animation </div>
+    <div class='txt_planning'>Mme BARATIER </div>
+  </div>
+  <div id='360919_simple_bulle' style='display:none;text-align:center;width:px'>
+    <div style='width:px;text-align:center'>MIP Animation </div>
+    <div style='width:px;text-align:center'>BRAM Mme BRAMARD </div>
+    <div style='width:px;text-align:center'></div>
+    <div style='width:px;text-align:center'></div>
+  </div>
+  <div id='360919_simple' class='sequence tooltip_bas ' data-toggle='tooltip' style='top:150.5px; height:35.5px;background:#C24202'>
+    <div class='txt_planning'>Animation </div>
+    <div class='txt_planning'>Mme BRAMARD </div>
+  </div>
+  <div id='360917_simple_bulle' style='display:none;text-align:center;width:px'>
+    <div style='width:px;text-align:center'>MIP Animation </div>
+    <div style='width:px;text-align:center'>BRAM Mme BRAMARD </div>
+    <div style='width:px;text-align:center'></div>
+    <div style='width:px;text-align:center'></div>
+  </div>
+  <div id='360917_simple' class='sequence tooltip_bas ' data-toggle='tooltip' style='top:189px; height:39px;background:#C24202'>
+    <div class='txt_planning'>Animation </div>
+    <div class='txt_planning'>Mme BRAMARD </div>
+  </div>
+  <div id='361046_simple_bulle' style='display:none;text-align:center;width:px'>
+    <div style='width:px;text-align:center'>Activités culturelles Activités culturelles </div>
+    <div style='width:px;text-align:center'>SM Mme MICHEL </div>
+    <div style='width:px;text-align:center'></div>
+    <div style='width:px;text-align:center'></div>
+  </div>
+  <div id='361046_simple' class='sequence tooltip_haut ' data-toggle='tooltip' style='top:315px; height:35.5px;background:#16f53b'>
+    <div class='txt_planning'>Activités culturelles </div>
+    <div class='txt_planning'>Mme MICHEL </div>
+  </div>
+  <div id='361037_simple_bulle' style='display:none;text-align:center;width:px'>
+    <div style='width:px;text-align:center'>MP3 ESF </div>
+    <div style='width:px;text-align:center'>CT Mme TELUOB </div>
+    <div style='width:px;text-align:center'></div>
+    <div style='width:px;text-align:center'></div>
+  </div>
+  <div id='361037_simple' class='sequence tooltip_haut ' data-toggle='tooltip' style='top:360.5px; height:35.5px;background:#f90f90'>
+    <div class='txt_planning'>MP3 ESF </div>
+    <div class='txt_planning'>Mme TELUOB </div>
+  </div>
+  <div id='361038_simple_bulle' style='display:none;text-align:center;width:px'>
+    <div style='width:px;text-align:center'>MP3 ESF </div>
+    <div style='width:px;text-align:center'>CT Mme TELUOB </div>
+    <div style='width:px;text-align:center'></div>
+    <div style='width:px;text-align:center'></div>
+  </div>
+  <div id='361038_simple' class='sequence tooltip_haut ' data-toggle='tooltip' style='top:399px; height:39px;background:#f90f90'>
+    <div class='txt_planning'>MP3 ESF </div>
+    <div class='txt_planning'>Mme TELUOB </div>
+  </div>
+  <div id='361047_simple_bulle' style='display:none;text-align:center;width:px'>
+    <div style='width:px;text-align:center'>Activités culturelles Activités culturelles </div>
+    <div style='width:px;text-align:center'>SM Mme MICHEL </div>
+    <div style='width:px;text-align:center'>Surveillé par Laëtitia B </div>
+    <div style='width:px;text-align:center'></div>
+  </div>
+  <div id='361047_simple' class='sequence tooltip_haut ' data-toggle='tooltip' style='top:273px; height:39px;background:#16f53b'>
+    <div class='txt_planning'>Activités culturelles </div>
+    <div class='txt_planning'>Mme MICHEL </div>
+  </div>
+</div>
+</div>
+<div class="col-sm-1 col-12">
+  <div class="entete-jour_planning">Mercredi 29 Mai    
+                            </div>
+  <div id='mat_3_service_bulle' style='display:none;text-align:center'>
+    <table style='width:100%;text-align:center;margin-bottom:10px;' cellpadding='0' cellspacing='0'>
+      <tr>
+        <td>
+</span>07:45 - 08:30 &nbsp;&nbsp;&nbsp;&nbsp;12:30 - 13:30 &nbsp;&nbsp;&nbsp;&nbsp;</td></tr>
+<tr>
+  <td>Mme BRAMARD </td>
+</tr>
+</table></div>
+<div id='mat_3_service' data-toggle='tooltip' class="entete-jour_services" style="text-align:center;">
+  &nbsp;<span class='fa fa-info-circle' style='font-size:17px;'></span>
+</div>
+<div class="div_jour" style="height:546px">
+  <div id='361667_simple_bulle' style='display:none;text-align:center;width:px'>
+    <div style='width:px;text-align:center'>Activités culturelles Activités culturelles </div>
+    <div style='width:px;text-align:center'>SM Mme MICHEL </div>
+    <div style='width:px;text-align:center'></div>
+    <div style='width:px;text-align:center'></div>
+  </div>
+  <div id='361667_simple' class='sequence tooltip_haut ' data-toggle='tooltip' style='top:399px; height:39px;background:#16f53b'>
+    <div class='txt_planning'>Activités culturelles </div>
+    <div class='txt_planning'>Mme MICHEL </div>
+  </div>
+  <div id='361665_simple_bulle' style='display:none;text-align:center;width:px'>
+    <div style='width:px;text-align:center'>Activités culturelles Activités culturelles </div>
+    <div style='width:px;text-align:center'>SM Mme MICHEL </div>
+    <div style='width:px;text-align:center'></div>
+    <div style='width:px;text-align:center'></div>
+  </div>
+  <div id='361665_simple' class='sequence tooltip_haut ' data-toggle='tooltip' style='top:360.5px; height:35.5px;background:#16f53b'>
+    <div class='txt_planning'>Activités culturelles </div>
+    <div class='txt_planning'>Mme MICHEL </div>
+  </div>
+  <div id='361663_simple_bulle' style='display:none;text-align:center;width:px'>
+    <div style='width:px;text-align:center'>Activités culturelles Activités culturelles </div>
+    <div style='width:px;text-align:center'>SM Mme MICHEL </div>
+    <div style='width:px;text-align:center'></div>
+    <div style='width:px;text-align:center'></div>
+  </div>
+  <div id='361663_simple' class='sequence tooltip_haut ' data-toggle='tooltip' style='top:315px; height:35.5px;background:#16f53b'>
+    <div class='txt_planning'>Activités culturelles </div>
+    <div class='txt_planning'>Mme MICHEL </div>
+  </div>
+  <div id='361661_simple_bulle' style='display:none;text-align:center;width:px'>
+    <div style='width:px;text-align:center'>Activités culturelles Activités culturelles </div>
+    <div style='width:px;text-align:center'>SM Mme MICHEL </div>
+    <div style='width:px;text-align:center'></div>
+    <div style='width:px;text-align:center'></div>
+  </div>
+  <div id='361661_simple' class='sequence tooltip_haut ' data-toggle='tooltip' style='top:273px; height:39px;background:#16f53b'>
+    <div class='txt_planning'>Activités culturelles </div>
+    <div class='txt_planning'>Mme MICHEL </div>
+  </div>
+  <div id='361657_simple_bulle' style='display:none;text-align:center;width:px'>
+    <div style='width:px;text-align:center'>Activités culturelles Activités culturelles </div>
+    <div style='width:px;text-align:center'>SM Mme MICHEL </div>
+    <div style='width:px;text-align:center'></div>
+    <div style='width:px;text-align:center'></div>
+  </div>
+  <div id='361657_simple' class='sequence tooltip_bas ' data-toggle='tooltip' style='top:150.5px; height:35.5px;background:#16f53b'>
+    <div class='txt_planning'>Activités culturelles </div>
+    <div class='txt_planning'>Mme MICHEL </div>
+  </div>
+  <div id='361659_simple_bulle' style='display:none;text-align:center;width:px'>
+    <div style='width:px;text-align:center'>Activités culturelles Activités culturelles </div>
+    <div style='width:px;text-align:center'>SM Mme MICHEL </div>
+    <div style='width:px;text-align:center'></div>
+    <div style='width:px;text-align:center'></div>
+  </div>
+  <div id='361659_simple' class='sequence tooltip_bas ' data-toggle='tooltip' style='top:189px; height:39px;background:#16f53b'>
+    <div class='txt_planning'>Activités culturelles </div>
+    <div class='txt_planning'>Mme MICHEL </div>
+  </div>
+  <div id='361655_simple_bulle' style='display:none;text-align:center;width:px'>
+    <div style='width:px;text-align:center'>Activités culturelles Activités culturelles </div>
+    <div style='width:px;text-align:center'>SM Mme MICHEL </div>
+    <div style='width:px;text-align:center'></div>
+    <div style='width:px;text-align:center'></div>
+  </div>
+  <div id='361655_simple' class='sequence tooltip_bas ' data-toggle='tooltip' style='top:105px; height:35.5px;background:#16f53b'>
+    <div class='txt_planning'>Activités culturelles </div>
+    <div class='txt_planning'>Mme MICHEL </div>
+  </div>
+  <div id='361668_simple_bulle' style='display:none;text-align:center;width:px'>
+    <div style='width:px;text-align:center'>Activités culturelles Activités culturelles </div>
+    <div style='width:px;text-align:center'>SM Mme MICHEL </div>
+    <div style='width:px;text-align:center'>sortie PAL accompagné par LB </div>
+    <div style='width:px;text-align:center'></div>
+  </div>
+  <div id='361668_simple' class='sequence tooltip_bas ' data-toggle='tooltip' style='top:63px; height:39px;background:#16f53b'>
+    <div class='txt_planning'>Activités culturelles </div>
+    <div class='txt_planning'>Mme MICHEL </div>
+  </div>
+</div>
+</div>
+<div class="col-sm-1 col-12">
+  <div class="entete-jour_planning">Jeudi 30 Mai    
+                            </div>
+  <div id='mat_4_service_bulle' style='display:none;text-align:center'>
+    <table style='width:100%;text-align:center;margin-bottom:10px;' cellpadding='0' cellspacing='0'>
+      <tr>
+        <td>
+</span>07:45 - 08:30 &nbsp;&nbsp;&nbsp;&nbsp;</td></tr>
+<tr>
+  <td>Mr MICHELET </td>
+</tr>
+</table>
+<table style='width:100%;text-align:center;margin-bottom:10px;' cellpadding='0' cellspacing='0'>
+  <tr>
+    <td>
+</span>12:30 - 13:30 &nbsp;&nbsp;&nbsp;&nbsp;</td></tr>
+<tr>
+  <td>Mr MICHELET </td>
+</tr>
+</table></div>
+<div id='mat_4_service' data-toggle='tooltip' class="entete-jour_services" style="text-align:center;">
+  &nbsp;<span class='fa fa-info-circle' style='font-size:17px;'></span>
+</div>
+<div class="div_jour" style="height:546px">
+  <div id='361051_simple_bulle' style='display:none;text-align:center;width:px'>
+    <div style='width:px;text-align:center'>MG1 Math </div>
+    <div style='width:px;text-align:center'>FM Mr MICHELET </div>
+    <div style='width:px;text-align:center'></div>
+    <div style='width:px;text-align:center'></div>
+  </div>
+  <div id='361051_simple' class='sequence tooltip_bas ' data-toggle='tooltip' style='top:150.5px; height:35.5px;background:#35d4d4'>
+    <div class='txt_planning'>MG1 Math </div>
+    <div class='txt_planning'>Mr MICHELET </div>
+  </div>
+  <div id='360916_simple_bulle' style='display:none;text-align:center;width:px'>
+    <div style='width:px;text-align:center'>MP3 ESF </div>
+    <div style='width:px;text-align:center'>CT Mme TELUOB </div>
+    <div style='width:px;text-align:center'></div>
+    <div style='width:px;text-align:center'></div>
+  </div>
+  <div id='360916_simple' class='sequence tooltip_haut ' data-toggle='tooltip' style='top:399px; height:39px;background:#f90f90'>
+    <div class='txt_planning'>MP3 ESF </div>
+    <div class='txt_planning'>Mme TELUOB </div>
+  </div>
+  <div id='360914_simple_bulle' style='display:none;text-align:center;width:px'>
+    <div style='width:px;text-align:center'>MP3 ESF </div>
+    <div style='width:px;text-align:center'>DESS Mme DESSOLIN </div>
+    <div style='width:px;text-align:center'></div>
+    <div style='width:px;text-align:center'></div>
+  </div>
+  <div id='360914_simple' class='sequence tooltip_haut ' data-toggle='tooltip' style='top:315px; height:35.5px;background:#00CC33'>
+    <div class='txt_planning'>MP3 ESF </div>
+    <div class='txt_planning'>Mme DESSOLIN </div>
+  </div>
+  <div id='360915_simple_bulle' style='display:none;text-align:center;width:px'>
+    <div style='width:px;text-align:center'>MP3 ESF </div>
+    <div style='width:px;text-align:center'>CT Mme TELUOB </div>
+    <div style='width:px;text-align:center'></div>
+    <div style='width:px;text-align:center'></div>
+  </div>
+  <div id='360915_simple' class='sequence tooltip_haut ' data-toggle='tooltip' style='top:360.5px; height:35.5px;background:#f90f90'>
+    <div class='txt_planning'>MP3 ESF </div>
+    <div class='txt_planning'>Mme TELUOB </div>
+  </div>
+  <div id='360913_simple_bulle' style='display:none;text-align:center;width:px'>
+    <div style='width:px;text-align:center'>MP3 ESF </div>
+    <div style='width:px;text-align:center'>DESS Mme DESSOLIN </div>
+    <div style='width:px;text-align:center'></div>
+    <div style='width:px;text-align:center'></div>
+  </div>
+  <div id='360913_simple' class='sequence tooltip_haut ' data-toggle='tooltip' style='top:273px; height:39px;background:#00CC33'>
+    <div class='txt_planning'>MP3 ESF </div>
+    <div class='txt_planning'>Mme DESSOLIN </div>
+  </div>
+  <div id='360331_simple_bulle' style='display:none;text-align:center;width:px'>
+    <div style='width:px;text-align:center'>MP4 Techniques commerciales </div>
+    <div style='width:px;text-align:center'>LB Mme BARATIER </div>
+    <div style='width:px;text-align:center'></div>
+    <div style='width:px;text-align:center'></div>
+  </div>
+  <div id='360331_simple' class='sequence tooltip_bas ' data-toggle='tooltip' style='top:105px; height:35.5px;background:#f00f00'>
+    <div class='txt_planning'>MP4 Techniques commerciales </div>
+    <div class='txt_planning'>Mme BARATIER </div>
+  </div>
+  <div id='360330_simple_bulle' style='display:none;text-align:center;width:px'>
+    <div style='width:px;text-align:center'>MP4 Techniques commerciales </div>
+    <div style='width:px;text-align:center'>LB Mme BARATIER </div>
+    <div style='width:px;text-align:center'></div>
+    <div style='width:px;text-align:center'></div>
+  </div>
+  <div id='360330_simple' class='sequence tooltip_bas ' data-toggle='tooltip' style='top:63px; height:39px;background:#f00f00'>
+    <div class='txt_planning'>MP4 Techniques commerciales </div>
+    <div class='txt_planning'>Mme BARATIER </div>
+  </div>
+  <div id='361049_simple_bulle' style='display:none;text-align:center;width:px'>
+    <div style='width:px;text-align:center'>MG1 Math </div>
+    <div style='width:px;text-align:center'>FM Mr MICHELET </div>
+    <div style='width:px;text-align:center'></div>
+    <div style='width:px;text-align:center'></div>
+  </div>
+  <div id='361049_simple' class='sequence tooltip_bas ' data-toggle='tooltip' style='top:189px; height:39px;background:#35d4d4'>
+    <div class='txt_planning'>MG1 Math </div>
+    <div class='txt_planning'>Mr MICHELET </div>
+  </div>
+</div>
+</div>
+<div class="col-sm-1 col-12">
+  <div class="entete-jour_planning">Vendredi 31 Mai    
+                            </div>
+  <div id='mat_5_service_bulle' style='display:none;text-align:center'>
+    <table style='width:100%;text-align:center;margin-bottom:10px;' cellpadding='0' cellspacing='0'>
+      <tr>
+        <td>
+</span>07:45 - 08:30 &nbsp;&nbsp;&nbsp;&nbsp;</td></tr>
+<tr>
+  <td>Mme BARATIER </td>
+</tr>
+</table>
+<table style='width:100%;text-align:center;margin-bottom:10px;' cellpadding='0' cellspacing='0'>
+  <tr>
+    <td>
+</span>12:30 - 13:30 &nbsp;&nbsp;&nbsp;&nbsp;</td></tr>
+<tr>
+  <td>Mme BARATIER </td>
+</tr>
+</table></div>
+<div id='mat_5_service' data-toggle='tooltip' class="entete-jour_services" style="text-align:center;">
+  &nbsp;<span class='fa fa-info-circle' style='font-size:17px;'></span>
+</div>
+<div class="div_jour" style="height:546px">
+  <div id='361053_simple_bulle' style='display:none;text-align:center;width:px'>
+    <div style='width:px;text-align:center'>MP2 Communication VER </div>
+    <div style='width:px;text-align:center'>LB Mme BARATIER </div>
+    <div style='width:px;text-align:center'></div>
+    <div style='width:px;text-align:center'></div>
+  </div>
+  <div id='361053_simple' class='sequence tooltip_haut ' data-toggle='tooltip' style='top:360.5px; height:35.5px;background:#f00f00'>
+    <div class='txt_planning'>MP2 Communication VER </div>
+    <div class='txt_planning'>Mme BARATIER </div>
+  </div>
+  <div id='360337_simple_bulle' style='display:none;text-align:center;width:px'>
+    <div style='width:px;text-align:center'>MP4 Techniques commerciales </div>
+    <div style='width:px;text-align:center'>LB Mme BARATIER </div>
+    <div style='width:px;text-align:center'></div>
+    <div style='width:px;text-align:center'></div>
+  </div>
+  <div id='360337_simple' class='sequence tooltip_haut ' data-toggle='tooltip' style='top:315px; height:35.5px;background:#f00f00'>
+    <div class='txt_planning'>MP4 Techniques commerciales </div>
+    <div class='txt_planning'>Mme BARATIER </div>
+  </div>
+  <div id='360336_simple_bulle' style='display:none;text-align:center;width:px'>
+    <div style='width:px;text-align:center'>MP4 Techniques commerciales </div>
+    <div style='width:px;text-align:center'>LB Mme BARATIER </div>
+    <div style='width:px;text-align:center'></div>
+    <div style='width:px;text-align:center'></div>
+  </div>
+  <div id='360336_simple' class='sequence tooltip_haut ' data-toggle='tooltip' style='top:273px; height:39px;background:#f00f00'>
+    <div class='txt_planning'>MP4 Techniques commerciales </div>
+    <div class='txt_planning'>Mme BARATIER </div>
+  </div>
+  <div id='360335_simple_bulle' style='display:none;text-align:center;width:px'>
+    <div style='width:px;text-align:center'>MP4 Techniques commerciales </div>
+    <div style='width:px;text-align:center'>LB Mme BARATIER </div>
+    <div style='width:px;text-align:center'></div>
+    <div style='width:px;text-align:center'></div>
+  </div>
+  <div id='360335_simple' class='sequence tooltip_bas ' data-toggle='tooltip' style='top:189px; height:39px;background:#f00f00'>
+    <div class='txt_planning'>MP4 Techniques commerciales </div>
+    <div class='txt_planning'>Mme BARATIER </div>
+  </div>
+  <div id='360334_simple_bulle' style='display:none;text-align:center;width:px'>
+    <div style='width:px;text-align:center'>MP4 Techniques commerciales </div>
+    <div style='width:px;text-align:center'>LB Mme BARATIER </div>
+    <div style='width:px;text-align:center'></div>
+    <div style='width:px;text-align:center'></div>
+  </div>
+  <div id='360334_simple' class='sequence tooltip_bas ' data-toggle='tooltip' style='top:150.5px; height:35.5px;background:#f00f00'>
+    <div class='txt_planning'>MP4 Techniques commerciales </div>
+    <div class='txt_planning'>Mme BARATIER </div>
+  </div>
+  <div id='360952_simple_bulle' style='display:none;text-align:center;width:px'>
+    <div style='width:px;text-align:center'>MP1 Sciences éco/sociales et de gestion </div>
+    <div style='width:px;text-align:center'>DEVI Mme DEVIN </div>
+    <div style='width:px;text-align:center'></div>
+    <div style='width:px;text-align:center'></div>
+  </div>
+  <div id='360952_simple' class='sequence tooltip_bas ' data-toggle='tooltip' style='top:105px; height:35.5px;background:#845800'>
+    <div class='txt_planning'>MP1 Sciences éco/sociales et de gestion </div>
+    <div class='txt_planning'>Mme DEVIN </div>
+  </div>
+  <div id='360951_simple_bulle' style='display:none;text-align:center;width:px'>
+    <div style='width:px;text-align:center'>MP1 Sciences éco/sociales et de gestion </div>
+    <div style='width:px;text-align:center'>DEVI Mme DEVIN </div>
+    <div style='width:px;text-align:center'></div>
+    <div style='width:px;text-align:center'></div>
+  </div>
+  <div id='360951_simple' class='sequence tooltip_bas ' data-toggle='tooltip' style='top:63px; height:39px;background:#845800'>
+    <div class='txt_planning'>MP1 Sciences éco/sociales et de gestion </div>
+    <div class='txt_planning'>Mme DEVIN </div>
+  </div>
+</div>
+</div></div></div></div>
+<!-- /.panel-body -->
+</div>
+<!-- /.panel -->
+</div>
+<!-- /.container-->
+<script>
+  $(document).ready(function() {
+    $('[data-toggle="tooltip"]').tooltip({
+      title: function() {
+
+        return $("#" + this.id + "_bulle").html();
+      },
+      html: true,
+      sanitize: false,
+      placement: 'auto'
+    });
+  });
+</script>
+</body></html>
