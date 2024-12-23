@@ -50,6 +50,7 @@
   },
   "dependencies": {
     "@literate.ink/utilities": "1.0.0-11713907881.1",
-    "@scure/base": "^1.2.1"
+    "@scure/base": "^1.2.1",
+    "cheerio": "^1.0.0"
   }
 }
