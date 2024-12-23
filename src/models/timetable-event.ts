@@ -4,10 +4,11 @@ export type TimetableEvent = {
   endDate: Date
 } & (
   | {
+    id: number
     type: "lesson"
     title: string
     teacherName: string
     description: string
   }
-  | { type: "work" }
+  | { type: "work" | "holiday" }
 );

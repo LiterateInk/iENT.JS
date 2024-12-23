@@ -102,6 +102,7 @@ test("decodeHomepage with news, messages and timetable", () => {
   expect(homepage.timetable.events).toStrictEqual([
     {
       type: "lesson",
+      id: 378492,
       colorHex: "#f00f00",
       startDate: new Date(2024, 11, 20, 8, 30),
       endDate: new Date(2024, 11, 20, 10, 30),
@@ -111,6 +112,7 @@ test("decodeHomepage with news, messages and timetable", () => {
     },
     {
       type: "lesson",
+      id: 378493,
       colorHex: "#f00f00",
       startDate: new Date(2024, 11, 20, 10, 30),
       endDate: new Date(2024, 11, 20, 12, 30),
@@ -120,6 +122,7 @@ test("decodeHomepage with news, messages and timetable", () => {
     },
     {
       type: "lesson",
+      id: 378483,
       colorHex: "#00CC33",
       startDate: new Date(2024, 11, 20, 13, 30),
       endDate: new Date(2024, 11, 20, 15, 30),
