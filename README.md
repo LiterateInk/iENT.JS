@@ -1,4 +1,4 @@
-<img alt="iENT: An awmazing API wrapper for iENT" src="https://raw.githubusercontent.com/LiterateInk/iENT.JS/main/.github/assets/banner.svg" width="100%" />
+<img alt="iENT: An awmazing wrapper for iENT" src="https://raw.githubusercontent.com/LiterateInk/iENT.JS/main/.github/assets/banner.svg" width="100%" />
 
 *This library **is not** affiliated with [&nearr;&nbsp;iENT](https://www.ient.fr/) in any way.*
 

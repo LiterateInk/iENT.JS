@@ -12,10 +12,9 @@ repository-code: "https://github.com/LiterateInk/iENT.JS"
 url: "https://ient.docs.literate.ink/"
 repository-artifact: "https://www.npmjs.com/package/ient"
 abstract: >-
-  An awmazing API wrapper for iENT.
+  An awmazing wrapper for iENT.
 keywords:
   - ient
-  - api
-  - ent
   - wrapper
+  - scrapper
 license: GPL-3.0-or-later
