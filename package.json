@@ -1,44 +1,14 @@
 {
-  "name": "ient",
-  "version": "0.0.0",
-  "description": "An awmazing API wrapper for iENT.",
-  "repository": "https://github.com/LiterateInk/iENT.JS",
-  "sideEffects": false,
-  "main": "./dist/index.js",
-  "module": "./dist/index.mjs",
-  "types": "./dist/index.d.ts",
-  "exports": {
-    "import": {
-      "types": "./dist/index.d.mts",
-      "default": "./dist/index.mjs"
-    },
-    "require": {
-      "types": "./dist/index.d.ts",
-      "default": "./dist/index.js"
-    }
-  },
-  "scripts": {
-    "build": "tsup",
-    "checks": "tsc && eslint ."
-  },
-  "files": [
-    "dist"
-  ],
-  "keywords": [
-    "ient",
-    "api",
-    "ent",
-    "wrapper"
-  ],
   "author": "LiterateInk <contact@literate.ink> (https://literate.ink)",
-  "homepage": "https://ient.docs.literate.ink/",
   "bugs": {
     "url": "https://github.com/LiterateInk/iENT.JS/issues"
   },
-  "license": "GPL-3.0-or-later",
-  "engines": {
-    "node": ">=18"
+  "dependencies": {
+    "@literate.ink/utilities": "1.0.0-11713907881.1",
+    "@scure/base": "^1.2.4",
+    "cheerio": "^1.0.0"
   },
+  "description": "An awmazing API wrapper for iENT.",
   "devDependencies": {
     "@stylistic/eslint-plugin": "^4.2.0",
     "@types/bun": "^1.2.8",
@@ -49,14 +19,44 @@
     "tsup": "^8.4.0",
     "typescript": "^5.8.3"
   },
-  "dependencies": {
-    "@literate.ink/utilities": "1.0.0-11713907881.1",
-    "@scure/base": "^1.2.4",
-    "cheerio": "^1.0.0"
+  "engines": {
+    "node": ">=18"
   },
+  "exports": {
+    "import": {
+      "default": "./dist/index.mjs",
+      "types": "./dist/index.d.mts"
+    },
+    "require": {
+      "default": "./dist/index.js",
+      "types": "./dist/index.d.ts"
+    }
+  },
+  "files": [
+    "dist"
+  ],
+  "homepage": "https://ient.docs.literate.ink/",
+  "keywords": [
+    "ient",
+    "api",
+    "ent",
+    "wrapper"
+  ],
+  "license": "GPL-3.0-or-later",
+  "main": "./dist/index.js",
+  "module": "./dist/index.mjs",
+  "name": "ient",
   "pnpm": {
     "onlyBuiltDependencies": [
       "esbuild"
     ]
-  }
+  },
+  "repository": "https://github.com/LiterateInk/iENT.JS",
+  "scripts": {
+    "build": "tsup",
+    "checks": "tsc && eslint ."
+  },
+  "sideEffects": false,
+  "types": "./dist/index.d.ts",
+  "version": "0.1.0"
 }
