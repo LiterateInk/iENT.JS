@@ -39,7 +39,8 @@ export const getGradesForYear = async (sessionID: string, year: number, fetcher:
     const period = decodePeriod($, periodID);
     const subjects = decodeGrades($);
 
-    periodsMap.set(period, subjects);
+    if(period)
+      periodsMap.set(period, subjects);
 
     const nextPeriodArrow = $(".row.periode>div:nth-child(3) .fa-chevron-right:not(.disabled)");
 

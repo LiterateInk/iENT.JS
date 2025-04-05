@@ -4,6 +4,8 @@ import * as cheerio from "cheerio";
 import { decodeGrades } from "./grades";
 
 import grades from "!/Notes.2.html" with { type: "text" };
+import gradesEmpty from "!/Notes.empty.html" with { type: "text" };
+
 import { Grade, Subject } from "~/models";
 
 test("decodeGrades", () => {
@@ -136,4 +138,10 @@ test("decodeGrades", () => {
   });
 
   expect(decodeGrades($)).toStrictEqual(subjects);
+});
+
+test("decodeGrades with empty page", () => {
+  const $ = cheerio.load(gradesEmpty);
+
+  expect(decodeGrades($)).toBeEmpty();
 });

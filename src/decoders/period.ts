@@ -2,8 +2,11 @@ import type { CheerioAPI } from "cheerio";
 import { Period } from "~/models";
 import { parseFrenchDateString } from "~/utils";
 
-export function decodePeriod($: CheerioAPI, id: number): Period {
+export function decodePeriod($: CheerioAPI, id: number): Period | null {
   const periodString = $(".row.periode>div:nth-child(2)").text();
+
+  if (!periodString)
+    return null;
 
   const periodName = periodString.split("(")[0].trim();
   const periodDateString = periodString.replace(periodName, "").replace("(", "").replace(")", "").replace(" ", "");
