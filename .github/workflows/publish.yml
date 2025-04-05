@@ -1,4 +1,4 @@
-name: Publish on NPM
+name: Publish
 
 on:
   push:
@@ -16,14 +16,13 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
-      - uses: oven-sh/setup-bun@v2
+      - uses: actions/setup-node@v4
         with:
-          registry-url: "https://registry.npmjs.com"
-          bun-version: latest
+          node-version: 20
+          registry-url: 'https://registry.npmjs.com'
 
       - env:
-          BUN_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
         run: |
-          bun install --frozen-lockfile && bun run build
-          bunx npm publish --provenance --access public
+          npm install && npm run build
+          npm publish --provenance --access public
