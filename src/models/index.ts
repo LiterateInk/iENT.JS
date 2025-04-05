@@ -5,3 +5,6 @@ export * from "./profile-kind";
 export * from "./timetable-day";
 export * from "./timetable-event";
 export * from "./timetable";
+export * from "./period";
+export * from "./subject";
+export * from "./grade";
