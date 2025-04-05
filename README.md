@@ -1,8 +1,8 @@
 <img alt="iENT: An awmazing wrapper for iENT" src="https://raw.githubusercontent.com/LiterateInk/iENT.JS/main/.github/assets/banner.svg" width="100%" />
 
-*This library **is not** affiliated with [&nearr;&nbsp;iENT](https://www.ient.fr/) in any way.*
-
 [![Checks](https://github.com/LiterateInk/iENT.JS/actions/workflows/checks.yml/badge.svg?branch=main)](https://github.com/LiterateInk/iENT.JS) [![NPM Downloads](https://img.shields.io/npm/dm/ient)](https://www.npmjs.com/package/ient) ![Discord](https://img.shields.io/discord/1205628496492101693?label=discord&color=%235865F2)
+
+*This library **is not** affiliated with [&nearr;&nbsp;iENT](https://www.ient.fr/) in any way.*
 
 ## What is "iENT" ?
 
