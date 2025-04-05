@@ -8,7 +8,6 @@
 
 [&nearr;&nbsp;iENT](https://www.ient.fr/) is a French school management software used by many schools in France. It allows students to manage their schedules, grades, and other school-related information.
 
-
 ## Installation
 
 Use your favorite package manager to install this library from the npm registry.
