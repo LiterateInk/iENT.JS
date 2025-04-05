@@ -1,5 +1,5 @@
 export type Metadata = Readonly<{
-  links: string[];
   fullName: string;
+  links: string[];
   unreadMessages: number;
 }>;

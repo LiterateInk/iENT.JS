@@ -1,4 +1,5 @@
 import type { CheerioAPI } from "cheerio";
+
 import { onlyNumbers } from "~/core/only-numbers";
 
 export const decodeTimetableHours = ($: CheerioAPI) => {

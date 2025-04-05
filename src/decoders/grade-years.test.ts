@@ -1,9 +1,9 @@
-import { test, expect } from "bun:test";
-
+import grades from "!/Notes.2.html" with { type: "text" };
+import { expect, test } from "bun:test";
 import * as cheerio from "cheerio";
 
-import grades from "!/Notes.2.html" with { type: "text" };
 import { GradeYear } from "~/models/grade-year";
+
 import { decodeGradeYears } from "./grade-years";
 
 test("decodeGradeYears", () => {

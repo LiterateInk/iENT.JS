@@ -1,18 +1,19 @@
-import { type Fetcher, defaultFetcher } from "@literate.ink/utilities";
+import { defaultFetcher, type Fetcher } from "@literate.ink/utilities";
+import * as cheerio from "cheerio";
+
 import type { Period, Subject } from "~/models";
 
-import * as cheerio from "cheerio";
+import { decodeGradeYears } from "~/decoders/grade-years";
 import { decodeGrades } from "~/decoders/grades";
-import { YearlyGradesOverview } from "~/utils";
 import { decodePeriod } from "~/decoders/period";
 import { GradeYear } from "~/models/grade-year";
-import { decodeGradeYears } from "~/decoders/grade-years";
+import { YearlyGradesOverview } from "~/utils";
 
 export const getGradeYears = async (sessionID: string, fetcher: Fetcher = defaultFetcher): Promise<GradeYear[]> => {
   const response = await fetcher({
-    url: new URL("https://www.ient.fr/notes"),
     headers: { Cookie: `ient=${sessionID}` },
-    redirect: "manual"
+    redirect: "manual",
+    url: new URL("https://www.ient.fr/notes")
   });
 
   const $ = cheerio.load(response.content);
@@ -29,9 +30,9 @@ export const getGradesForYear = async (sessionID: string, year: number, fetcher:
     periodID += 1;
 
     const response = await fetcher({
-      url: new URL(`https://www.ient.fr/notes?annee=${year}&periode=${periodID}`),
       headers: { Cookie: `ient=${sessionID}` },
-      redirect: "manual"
+      redirect: "manual",
+      url: new URL(`https://www.ient.fr/notes?annee=${year}&periode=${periodID}`)
     });
 
     const $ = cheerio.load(response.content);

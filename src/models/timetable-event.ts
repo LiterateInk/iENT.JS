@@ -1,14 +1,14 @@
 export type TimetableEvent = {
   colorHex: string
-  startDate: Date
   endDate: Date
+  startDate: Date
 } & (
   | {
-    id: number
-    type: "lesson"
-    title: string
-    teacherName: string
     description: string
+    id: number
+    teacherName: string
+    title: string
+    type: "lesson"
   }
-  | { type: "work" | "holiday" }
+  | { type: "holiday" | "work" }
 );

@@ -1,5 +1,7 @@
-import type { CheerioAPI, Cheerio } from "cheerio";
+import type { Cheerio, CheerioAPI } from "cheerio";
+
 import { Grade, Subject } from "~/models";
+
 import { decodeGrade } from "./grade";
 
 export const decodeGradeSubject = ($: CheerioAPI, container: Cheerio<any>): Subject => {
@@ -7,9 +9,9 @@ export const decodeGradeSubject = ($: CheerioAPI, container: Cheerio<any>): Subj
   const teacherName = $(container.find(".notes-padding-top")[1]).text().trim();
 
   const subject: Subject = {
+    grades: [],
     name: subjectName,
-    teacherName,
-    grades: []
+    teacherName
   };
 
   const grades = container.find(".border-notes[data-toggle=\"tooltip\"]").map((_, el) => {

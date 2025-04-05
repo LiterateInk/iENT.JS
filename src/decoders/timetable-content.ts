@@ -1,7 +1,9 @@
-import type { CheerioAPI, Cheerio } from "cheerio";
-import { onlyNumbers } from "~/core/only-numbers";
-import { nearest } from "~/core/nearest";
+import type { Cheerio, CheerioAPI } from "cheerio";
+
 import type { TimetableEvent } from "~/models";
+
+import { nearest } from "~/core/nearest";
+import { onlyNumbers } from "~/core/only-numbers";
 
 export const decodeTimetableContent = ($: CheerioAPI, container: Cheerio<any>, slots: number[], hours: Date[]): Array<TimetableEvent> => {
   const events: Array<TimetableEvent> = [];
@@ -18,20 +20,20 @@ export const decodeTimetableContent = ($: CheerioAPI, container: Cheerio<any>, s
 
     if (text === "Entreprise") {
       events.push({
-        type: "work",
         colorHex,
+        endDate: hours[hours.length - 1],
         // the first and last hours of the day...
         // that's how they show it in the timetable.
         startDate: hours[0],
-        endDate: hours[hours.length - 1]
+        type: "work"
       });
     }
     else if (text === "Congés") {
       events.push({
-        type: "holiday",
         colorHex,
+        endDate: hours[hours.length - 1],
         startDate: hours[0],
-        endDate: hours[hours.length - 1]
+        type: "holiday"
       });
     }
     else {
@@ -55,14 +57,14 @@ export const decodeTimetableContent = ($: CheerioAPI, container: Cheerio<any>, s
         .toArray();
 
       events.push({
-        type: "lesson",
-        id: onlyNumbers(id),
         colorHex,
-        startDate,
+        description,
         endDate,
-        title,
+        id: onlyNumbers(id),
+        startDate,
         teacherName,
-        description
+        title,
+        type: "lesson"
       });
     }
   });

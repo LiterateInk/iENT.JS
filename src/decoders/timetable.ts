@@ -1,9 +1,12 @@
 import type { CheerioAPI } from "cheerio";
+
 import type { Timetable, TimetableDay, TimetableEvent } from "~/models";
-import { decodeTimetableHours } from "./timetable-hours";
-import { onlyNumbers } from "~/core/only-numbers";
-import { decodeTimetableContent } from "./timetable-content";
+
 import { mapHoursToDate } from "~/core/map-hours-to-date";
+import { onlyNumbers } from "~/core/only-numbers";
+
+import { decodeTimetableContent } from "./timetable-content";
+import { decodeTimetableHours } from "./timetable-hours";
 
 export const decodeTimetable = ($: CheerioAPI): Timetable => {
   const { hours, slots } = decodeTimetableHours($);
@@ -46,12 +49,12 @@ export const decodeTimetable = ($: CheerioAPI): Timetable => {
 
     const events = decodeTimetableContent($, day, slots, dateHours);
 
-    days.push({ date, services, events });
+    days.push({ date, events, services });
   });
 
   return {
-    startDate,
+    days,
     endDate,
-    days
+    startDate
   };
 };

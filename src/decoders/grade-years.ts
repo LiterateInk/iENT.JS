@@ -1,5 +1,7 @@
 import { CheerioAPI } from "cheerio";
+
 import { GradeYear } from "~/models/grade-year";
+
 import { decodeGradeYear } from "./grade-year";
 
 export const decodeGradeYears = ($: CheerioAPI): GradeYear[] => {

@@ -1,6 +1,7 @@
-import { type Fetcher, defaultFetcher, getCookiesFromResponse, getHeaderFromResponse } from "@literate.ink/utilities";
-import type { ProfileKind } from "~/models";
+import { defaultFetcher, type Fetcher, getCookiesFromResponse, getHeaderFromResponse } from "@literate.ink/utilities";
 import { base64 } from "@scure/base";
+
+import type { ProfileKind } from "~/models";
 
 /**
  * @returns the session ID
@@ -12,8 +13,8 @@ export const login = async (profileKind: ProfileKind, username: string, password
   {
     // We have to make an initial request to create a session cookie.
     const response = await fetcher({
-      url: new URL(callback),
-      redirect: "manual"
+      redirect: "manual",
+      url: new URL(callback)
     });
 
     const cookies = getCookiesFromResponse(response);
@@ -31,14 +32,14 @@ export const login = async (profileKind: ProfileKind, username: string, password
     form.append("password", password);
 
     const response = await fetcher({
-      url: new URL(`https://auth.ient.fr/cas/login?service=${encodeURIComponent(callback)}`),
-      method: "POST",
+      content: form.toString(),
       headers: {
         "Content-Type": "application/x-www-form-urlencoded",
         Cookie: `ient=${sessionID}`
       },
-      content: form.toString(),
-      redirect: "manual"
+      method: "POST",
+      redirect: "manual",
+      url: new URL(`https://auth.ient.fr/cas/login?service=${encodeURIComponent(callback)}`)
     });
 
     // e.g.: "https://www.ient.fr/login?profil=2&ticket=ST-SOMEVERYLONGSTRING"
@@ -47,21 +48,21 @@ export const login = async (profileKind: ProfileKind, username: string, password
 
     // Mavigate to this URL to make sure the session cookie is authenticated.
     await fetcher({
-      url: new URL(location),
-      redirect: "manual",
       headers: {
         Cookie: `ient=${sessionID}`
-      }
+      },
+      redirect: "manual",
+      url: new URL(location)
     });
   }
 
   { // Navigate to this URL to make sure the session cookie is registered.
     await fetcher({
-      url: new URL(callback),
-      redirect: "manual",
       headers: {
         Cookie: `ient=${sessionID}`
-      }
+      },
+      redirect: "manual",
+      url: new URL(callback)
     });
   }
 

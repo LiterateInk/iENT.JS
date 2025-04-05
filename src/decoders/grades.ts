@@ -1,5 +1,7 @@
 import * as cheerio from "cheerio";
+
 import type { Subject } from "~/models";
+
 import { decodeGradeSubject } from "./grade-subject";
 
 export const decodeGrades = ($: cheerio.CheerioAPI): Subject[] => {

@@ -1,19 +1,21 @@
 import type { CheerioAPI } from "cheerio";
 
 import type { Homepage } from "~/models";
+
 import { mapHoursToDate } from "~/core/map-hours-to-date";
+
 import { decodeTimetableContent } from "./timetable-content";
 import { decodeTimetableHours } from "./timetable-hours";
 
 export const decodeHomepage = ($: CheerioAPI): Homepage => {
   const homepage: Homepage = {
+    messages: [],
     news: "",
     timetable: {
       date: new Date(),
-      hours: [],
-      events: []
-    },
-    messages: []
+      events: [],
+      hours: []
+    }
   };
 
   $(".card.card-primary").each((_, element) => {
@@ -23,12 +25,40 @@ export const decodeHomepage = ($: CheerioAPI): Homepage => {
     let body = card.find(".card-body");
 
     switch (title) {
+      // TODO: whenever an account supports them...
+      case "Dernières absences":
+
+      case "Dernières notes":
+
+      case "Travail à faire":
+        break;
+
+      case "Messagerie": {
+        homepage.messages = body.find("ul.chat > li > a").map((_, element) => {
+          const message = $(element);
+          const body = message.find(".chat-body");
+          const id = decodeURIComponent(message.attr("href")!.split("?id=")[1]);
+
+          const header = body.children().first();
+          const sender = header.find("strong").text().trim();
+          const sentDisplayDate = header.find("small").text().trim();
+
+          const subjectContainer = header.next();
+          const subject = subjectContainer.text().trim();
+
+          const contentContainer = subjectContainer.next();
+          const content = contentContainer.text().trim();
+
+          return { content, id, sender, sentDisplayDate, subject };
+        }).toArray();
+
+        break;
+      }
       case "News": {
         const data = body.html()?.trim() ?? "";
         homepage.news = data;
         break;
       }
-
       case "Planning": {
         body = card.find("a").first();
 
@@ -50,34 +80,6 @@ export const decodeHomepage = ($: CheerioAPI): Homepage => {
 
         break;
       }
-
-      case "Messagerie": {
-        homepage.messages = body.find("ul.chat > li > a").map((_, element) => {
-          const message = $(element);
-          const body = message.find(".chat-body");
-          const id = decodeURIComponent(message.attr("href")!.split("?id=")[1]);
-
-          const header = body.children().first();
-          const sender = header.find("strong").text().trim();
-          const sentDisplayDate = header.find("small").text().trim();
-
-          const subjectContainer = header.next();
-          const subject = subjectContainer.text().trim();
-
-          const contentContainer = subjectContainer.next();
-          const content = contentContainer.text().trim();
-
-          return { id, sender, sentDisplayDate, subject, content };
-        }).toArray();
-
-        break;
-      }
-
-      // TODO: whenever an account supports them...
-      case "Travail à faire":
-      case "Dernières notes":
-      case "Dernières absences":
-        break;
     }
   });
 

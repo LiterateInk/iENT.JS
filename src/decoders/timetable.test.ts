@@ -1,11 +1,10 @@
+import timetable_during_work from "!/planninghebdo.1.html" with { type: "text" };
+import timetable_full_lessons from "!/planninghebdo.2.html" with { type: "text" };
+import timetable_during_vacations from "!/planninghebdo.3.html" with { type: "text" };
 import { expect, test } from "bun:test";
 import * as cheerio from "cheerio";
 
 import { decodeTimetable } from "./timetable";
-
-import timetable_during_work from "!/planninghebdo.1.html" with { type: "text" };
-import timetable_full_lessons from "!/planninghebdo.2.html" with { type: "text" };
-import timetable_during_vacations from "!/planninghebdo.3.html" with { type: "text" };
 
 // (edge case) transition means from 30/12 to 05/01/2025
 test("decodeTimetable during work week with end of the year", () => {
@@ -44,10 +43,10 @@ test("decodeTimetable during vacations", () => {
     expectedEndDate.setHours(19, 30, 0, 0);
 
     expect(event).toStrictEqual({
-      type: "holiday",
       colorHex: "#fbf2e4",
+      endDate: expectedEndDate,
       startDate: expectedStartDate,
-      endDate: expectedEndDate
+      type: "holiday"
     });
   }
 });

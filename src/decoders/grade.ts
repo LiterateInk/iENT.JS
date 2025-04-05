@@ -1,4 +1,5 @@
-import type { CheerioAPI, Cheerio } from "cheerio";
+import type { Cheerio, CheerioAPI } from "cheerio";
+
 import { Grade, Subject } from "~/models";
 import { parseFrenchDateString } from "~/utils";
 
@@ -14,12 +15,12 @@ export const decodeGrade = ($: CheerioAPI, container: Cheerio<any>, subject: Sub
   const coefficient = Number.parseFloat($(infoContainer.find("div")[1]).text().trim().replace("Coeff ", ""));
 
   return {
+    coefficient,
     date,
     outOf,
-    value,
+    subject,
     title,
     type,
-    coefficient,
-    subject
+    value
   };
 };

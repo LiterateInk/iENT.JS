@@ -1,10 +1,9 @@
+import homepage_1 from "!/Welcome.1.html" with { type: "text" };
+import homepage_2 from "!/Welcome.2.html" with { type: "text" };
 import { expect, test } from "bun:test";
 import * as cheerio from "cheerio";
 
 import { decodeMetadata } from "~/decoders/metadata";
-
-import homepage_1 from "!/Welcome.1.html" with { type: "text" };
-import homepage_2 from "!/Welcome.2.html" with { type: "text" };
 
 const pages = [
   // `/Welcome` route.
@@ -18,11 +17,11 @@ test("decodeMetadata", () => {
 
     expect(metadata).toStrictEqual({
       fullName: "Student LITERATEINK",
-      unreadMessages: 0,
       links: [
         "https://literate.ink/",
         "https://github.com/LiterateInk"
-      ]
+      ],
+      unreadMessages: 0
     });
   }
 });

@@ -1,4 +1,5 @@
 import type { CheerioAPI } from "cheerio";
+
 import type { Metadata } from "~/models";
 
 export const decodeMetadata = ($: CheerioAPI): Metadata => {
@@ -10,8 +11,8 @@ export const decodeMetadata = ($: CheerioAPI): Metadata => {
   const unreadMessages = Number($("#non_lu_global").text()) || 0;
 
   return {
-    links,
     fullName,
+    links,
     unreadMessages
   };
 };

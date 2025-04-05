@@ -1,8 +1,9 @@
 import type { CheerioAPI } from "cheerio";
+
 import { Period } from "~/models";
 import { parseFrenchDateString } from "~/utils";
 
-export function decodePeriod($: CheerioAPI, id: number): Period | null {
+export function decodePeriod($: CheerioAPI, id: number): null | Period {
   const periodString = $(".row.periode>div:nth-child(2)").text();
 
   if (!periodString)
@@ -22,9 +23,9 @@ export function decodePeriod($: CheerioAPI, id: number): Period | null {
   endDate.setMilliseconds(999);
 
   return {
+    endDate,
     id,
     name: periodName,
-    startDate,
-    endDate
+    startDate
   };
 };
