@@ -1,8 +1,8 @@
 {
-  "name": "awent",
+  "name": "ient",
   "version": "0.0.0",
   "description": "An awmazing API wrapper for iENT.",
-  "repository": "https://github.com/LiterateInk/awENT",
+  "repository": "https://github.com/LiterateInk/iENT.JS",
   "sideEffects": false,
   "main": "./dist/index.js",
   "module": "./dist/index.mjs",
@@ -27,30 +27,36 @@
   "keywords": [
     "ient",
     "api",
+    "ent",
     "wrapper"
   ],
   "author": "LiterateInk <contact@literate.ink> (https://literate.ink)",
-  "homepage": "https://docs.literate.ink/awent",
+  "homepage": "https://ient.docs.literate.ink/",
   "bugs": {
-    "url": "https://github.com/LiterateInk/awENT/issues"
+    "url": "https://github.com/LiterateInk/iENT.JS/issues"
   },
   "license": "GPL-3.0-or-later",
   "engines": {
     "node": ">=18"
   },
   "devDependencies": {
-    "@stylistic/eslint-plugin": "^2.7.2",
-    "@types/bun": "^1.1.14",
-    "@typescript-eslint/parser": "^8.3.0",
+    "@stylistic/eslint-plugin": "^4.2.0",
+    "@types/bun": "^1.2.8",
+    "@typescript-eslint/parser": "^8.29.0",
     "dotenv": "^16.4.7",
-    "eslint": "^9.9.1",
-    "terser": "^5.31.6",
-    "tsup": "^8.2.4",
-    "typescript": "^5.5.4"
+    "eslint": "^9.24.0",
+    "terser": "^5.39.0",
+    "tsup": "^8.4.0",
+    "typescript": "^5.8.3"
   },
   "dependencies": {
     "@literate.ink/utilities": "1.0.0-11713907881.1",
-    "@scure/base": "^1.2.1",
+    "@scure/base": "^1.2.4",
     "cheerio": "^1.0.0"
+  },
+  "pnpm": {
+    "onlyBuiltDependencies": [
+      "esbuild"
+    ]
   }
 }
