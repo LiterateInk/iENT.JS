@@ -125,7 +125,7 @@ test("decodeGrades", () => {
         subject: undefined
       }
     ]
-  ]
+  ];
 
   gradesArrs.forEach((arr, i) => {
     arr.forEach((grade) => {
