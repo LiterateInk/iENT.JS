@@ -42,7 +42,7 @@ const timetable = await iENT.timetable(session, new Date());
 console.log(timetable);
 ```
 
-You can find guides at [**&nearr;&nbsp;ient.docs.literate.ink**](https://ient.docs.literate.ink) and if it's not enough you can also take a look at the [**&nearr;&nbsp;examples** directory on the GitHub repository`](https://github.com/LiterateInk/iENT.JS/tree/main/examples) for inspiration.
+You can find guides at [**&nearr;&nbsp;ient.docs.literate.ink**](https://ient.docs.literate.ink) and if it's not enough you can also take a look at the [**&nearr;&nbsp;examples** directory on the GitHub repository](https://github.com/LiterateInk/iENT.JS/tree/main/examples) for inspiration.
 
 If none of those are helpful, you can always [&nearr;&nbsp;open an issue](https://github.com/LiterateInk/iENT.JS/issues) to ask for help or join the [&nearr;&nbsp;LiterateInk Discord server](https://literate.ink/discord).
 
