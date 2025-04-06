@@ -9,7 +9,7 @@
       "~/*": ["./src/*"],
       "!/*": ["./tests/*"]
     },
-    
+
     "strict": true,
     "noEmit": true,
     "skipLibCheck": true,
@@ -19,6 +19,6 @@
     "allowSyntheticDefaultImports": true
   },
 
-  "include": ["src", "examples", "eslint.config.js", "tsup.config.ts", "tests/html.d.ts"],
+  "include": ["src", "examples", "eslint.config.ts", "tsup.config.ts", "tests/html.d.ts"],
   "exclude": ["node_modules", "dist"]
 }
