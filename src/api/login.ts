@@ -1,27 +1,28 @@
 import type { ProfileKind } from "~/models";
-import { defaultFetcher, type Fetcher, getCookiesFromResponse, getHeaderFromResponse } from "@literate.ink/utilities";
 
 import { base64 } from "@scure/base";
+import { HttpRequest, send } from "schwi";
 
 /**
  * @returns the session ID
  */
-export const login = async (profileKind: ProfileKind, username: string, password: string, fetcher: Fetcher = defaultFetcher): Promise<string> => {
+export const login = async (profileKind: ProfileKind, username: string, password: string): Promise<string> => {
   const callback = `https://www.ient.fr/login?profil=${profileKind}`;
-  let sessionID: string;
+  let sessionId: string;
 
   {
     // We have to make an initial request to create a session cookie.
-    const response = await fetcher({
-      redirect: "manual",
-      url: new URL(callback)
-    });
+    const request = new HttpRequest.Builder(callback)
+      .setRedirection(HttpRequest.Redirection.MANUAL)
+      .build();
 
-    const cookies = getCookiesFromResponse(response);
-    const cookie = cookies.find((cookie) => cookie.startsWith("ient="));
+    const response = await send(request);
+    const cookies = response.headers.getSetCookie();
+    let cookie = cookies.find((cookie) => cookie.startsWith("ient="));
     if (!cookie) throw new Error("ient cookie not found");
 
-    sessionID = cookie.split("=")[1];
+    cookie = cookie.split(";")[0];
+    sessionId = cookie.split("=")[1];
   }
 
   { // Handle the authentication flow.
@@ -31,40 +32,33 @@ export const login = async (profileKind: ProfileKind, username: string, password
     form.append("user", username);
     form.append("password", password);
 
-    const response = await fetcher({
-      content: form.toString(),
-      headers: {
-        "Content-Type": "application/x-www-form-urlencoded",
-        "Cookie": `ient=${sessionID}`
-      },
-      method: "POST",
-      redirect: "manual",
-      url: new URL(`https://auth.ient.fr/cas/login?service=${encodeURIComponent(callback)}`)
-    });
+    const request = new HttpRequest.Builder("https://auth.ient.fr/cas/login")
+      .setMethod(HttpRequest.Method.POST)
+      .setUrlSearchParameter("service", callback)
+      .setRedirection(HttpRequest.Redirection.MANUAL)
+      .setCookie("ient", sessionId)
+      .setSearchParamsBody(form)
+      .build();
+
+    const response = await send(request);
 
     // e.g.: "https://www.ient.fr/login?profil=2&ticket=ST-SOMEVERYLONGSTRING"
-    const location = getHeaderFromResponse(response, "location");
+    const location = response.headers.get("location");
     if (!location) throw new Error("location header not found");
 
     // Mavigate to this URL to make sure the session cookie is authenticated.
-    await fetcher({
-      headers: {
-        Cookie: `ient=${sessionID}`
-      },
-      redirect: "manual",
-      url: new URL(location)
-    });
+    await send(new HttpRequest.Builder(location)
+      .setRedirection(HttpRequest.Redirection.MANUAL)
+      .setCookie("ient", sessionId)
+      .build());
   }
 
   { // Navigate to this URL to make sure the session cookie is registered.
-    await fetcher({
-      headers: {
-        Cookie: `ient=${sessionID}`
-      },
-      redirect: "manual",
-      url: new URL(callback)
-    });
+    await send(new HttpRequest.Builder(callback)
+      .setRedirection(HttpRequest.Redirection.MANUAL)
+      .setCookie("ient", sessionId)
+      .build());
   }
 
-  return sessionID;
+  return sessionId;
 };

@@ -40,7 +40,7 @@
   "dependencies": {
     "@scure/base": "^1.2.4",
     "cheerio": "^1.0.0",
-    "schwi": "^0.1.0"
+    "schwi": "^0.2.1"
   },
   "devDependencies": {
     "@types/bun": "^1.2.8",

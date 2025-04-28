@@ -3,7 +3,7 @@ import type { Cheerio, CheerioAPI } from "cheerio";
 import type { Grade, Subject } from "~/models";
 import { parseFrenchDateString } from "~/utils";
 
-export const decodeGrade = ($: CheerioAPI, container: Cheerio<any>, subject: Subject): Grade => {
+export const decodeGrade = ($: CheerioAPI, container: Cheerio<any>): Grade => {
   const [day, month, year] = container.find(".note-date").text().trim().split("/");
   const date = parseFrenchDateString(day + "/" + month + "/" + "20" + year);
   const outOf = Number.parseInt(container.find(".note-sur").text().trim().substring(1));
@@ -18,7 +18,6 @@ export const decodeGrade = ($: CheerioAPI, container: Cheerio<any>, subject: Sub
     coefficient,
     date,
     outOf,
-    subject,
     title,
     type,
     value

@@ -9,17 +9,15 @@ export const decodeGradeSubject = ($: CheerioAPI, container: Cheerio<any>): Subj
   const subjectName = container.find(".notes-padding-top").first().text().trim();
   const teacherName = $(container.find(".notes-padding-top")[1]).text().trim();
 
+  const grades = container.find(".border-notes[data-toggle=\"tooltip\"]").map((_, el) => {
+    return decodeGrade($, $(el));
+  }).toArray();
+
   const subject: Subject = {
-    grades: [],
+    grades,
     name: subjectName,
     teacherName
   };
-
-  const grades = container.find(".border-notes[data-toggle=\"tooltip\"]").map((_, el) => {
-    return decodeGrade($, $(el), subject);
-  }).toArray();
-
-  subject.grades = grades;
 
   return subject;
 };
