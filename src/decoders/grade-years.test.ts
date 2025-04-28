@@ -12,15 +12,15 @@ test("decodeGradeYears", () => {
   const years: GradeYear[] = [
     {
       isDefault: true,
-      label: "2022/ 2023",
+      label: "2022/2023",
       number: 24
     }, {
       isDefault: false,
-      label: "2023/ 2024",
+      label: "2023/2024",
       number: 25
     }, {
       isDefault: false,
-      label: "2024/ 2025",
+      label: "2024/2025",
       number: 26
     }
   ];
