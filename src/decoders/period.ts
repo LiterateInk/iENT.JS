@@ -1,6 +1,6 @@
 import type { CheerioAPI } from "cheerio";
 
-import { Period } from "~/models";
+import type { Period } from "~/models";
 import { parseFrenchDateString } from "~/utils";
 
 export function decodePeriod($: CheerioAPI, id: number): null | Period {

@@ -1,12 +1,12 @@
-import { defaultFetcher, type Fetcher } from "@literate.ink/utilities";
-import * as cheerio from "cheerio";
-
 import type { Period, Subject } from "~/models";
+import type { GradeYear } from "~/models/grade-year";
 
+import { defaultFetcher, type Fetcher } from "@literate.ink/utilities";
+
+import * as cheerio from "cheerio";
 import { decodeGradeYears } from "~/decoders/grade-years";
 import { decodeGrades } from "~/decoders/grades";
 import { decodePeriod } from "~/decoders/period";
-import { GradeYear } from "~/models/grade-year";
 import { YearlyGradesOverview } from "~/utils";
 
 export const getGradeYears = async (sessionID: string, fetcher: Fetcher = defaultFetcher): Promise<GradeYear[]> => {
@@ -40,7 +40,7 @@ export const getGradesForYear = async (sessionID: string, year: number, fetcher:
     const period = decodePeriod($, periodID);
     const subjects = decodeGrades($);
 
-    if(period)
+    if (period)
       periodsMap.set(period, subjects);
 
     const nextPeriodArrow = $(".row.periode>div:nth-child(3) .fa-chevron-right:not(.disabled)");

@@ -2,7 +2,10 @@ import type { CheerioAPI } from "cheerio";
 
 import { onlyNumbers } from "~/core/only-numbers";
 
-export const decodeTimetableHours = ($: CheerioAPI) => {
+export const decodeTimetableHours = ($: CheerioAPI): {
+  hours: string[];
+  slots: number[];
+} => {
   // positions of each hours in the timetable
   const slots: number[] = [];
 

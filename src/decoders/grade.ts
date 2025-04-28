@@ -1,6 +1,6 @@
 import type { Cheerio, CheerioAPI } from "cheerio";
 
-import { Grade, Subject } from "~/models";
+import type { Grade, Subject } from "~/models";
 import { parseFrenchDateString } from "~/utils";
 
 export const decodeGrade = ($: CheerioAPI, container: Cheerio<any>, subject: Subject): Grade => {

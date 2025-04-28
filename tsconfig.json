@@ -1,10 +1,10 @@
 {
   "compilerOptions": {
     "target": "ESNext",
-    "module": "ESNext",
-    "moduleResolution": "Bundler",
 
     "baseUrl": ".",
+    "module": "ESNext",
+    "moduleResolution": "Bundler",
     "paths": {
       "~/*": ["./src/*"],
       "!/*": ["./tests/*"]
@@ -12,11 +12,11 @@
 
     "strict": true,
     "noEmit": true,
-    "skipLibCheck": true,
 
-    "isolatedModules": true,
+    "allowSyntheticDefaultImports": true,
     "esModuleInterop": true,
-    "allowSyntheticDefaultImports": true
+    "isolatedModules": true,
+    "skipLibCheck": true
   },
 
   "include": ["src", "examples", "eslint.config.ts", "tsup.config.ts", "tests/html.d.ts"],

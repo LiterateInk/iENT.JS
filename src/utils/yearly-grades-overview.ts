@@ -1,4 +1,4 @@
-import { Period, Subject } from "~/models";
+import type { Period, Subject } from "~/models";
 
 export class YearlyGradesOverview {
   private gradesPerPeriod: Map<Period, Subject[]>;

@@ -1,12 +1,12 @@
-import { defaultFetcher, type Fetcher } from "@literate.ink/utilities";
-import * as cheerio from "cheerio";
-
 import type { Homepage, Metadata } from "~/models";
+import { defaultFetcher, type Fetcher } from "@literate.ink/utilities";
+
+import * as cheerio from "cheerio";
 
 import { decodeHomepage } from "~/decoders/homepage";
 import { decodeMetadata } from "~/decoders/metadata";
 
-export type HomepageResponse = { readonly metadata: Metadata } & Homepage;
+export type HomepageResponse = Homepage & { readonly metadata: Metadata };
 
 export const homepage = async (sessionID: string, fetcher: Fetcher = defaultFetcher): Promise<HomepageResponse> => {
   const response = await fetcher({

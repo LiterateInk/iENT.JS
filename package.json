@@ -4,9 +4,20 @@
   "description": "An awmazing wrapper for iENT.",
   "author": "LiterateInk <contact@literate.ink> (https://literate.ink)",
   "license": "GPL-3.0-or-later",
-  "main": "./dist/index.js",
-  "module": "./dist/index.mjs",
-  "types": "./dist/index.d.ts",
+  "homepage": "https://ient.docs.literate.ink/",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/LiterateInk/iENT.JS.git"
+  },
+  "bugs": {
+    "url": "https://github.com/LiterateInk/iENT.JS/issues"
+  },
+  "keywords": [
+    "ient",
+    "wrapper",
+    "scrapper"
+  ],
+  "sideEffects": false,
   "exports": {
     "import": {
       "types": "./dist/index.d.mts",
@@ -17,41 +28,28 @@
       "default": "./dist/index.js"
     }
   },
-  "dependencies": {
-    "@literate.ink/utilities": "1.0.0-11713907881.1",
-    "@scure/base": "^1.2.4",
-    "cheerio": "^1.0.0"
-  },
-  "devDependencies": {
-    "@stylistic/eslint-plugin": "^4.2.0",
-    "@types/bun": "^1.2.8",
-    "@typescript-eslint/parser": "^8.29.0",
-    "dotenv": "^16.4.7",
-    "eslint": "^9.24.0",
-    "eslint-plugin-perfectionist": "^4.11.0",
-    "jiti": "^2.4.2",
-    "terser": "^5.39.0",
-    "tsup": "^8.4.0",
-    "typescript": "^5.8.3"
-  },
+  "main": "./dist/index.js",
+  "module": "./dist/index.mjs",
+  "types": "./dist/index.d.ts",
   "files": [
     "dist"
-  ],
-  "keywords": [
-    "ient",
-    "wrapper",
-    "scrapper"
   ],
   "scripts": {
     "build": "tsup"
   },
-  "bugs": {
-    "url": "https://github.com/LiterateInk/iENT.JS/issues"
+  "dependencies": {
+    "@scure/base": "^1.2.4",
+    "cheerio": "^1.0.0",
+    "schwi": "^0.1.0"
   },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/LiterateInk/iENT.JS.git"
-  },
-  "homepage": "https://ient.docs.literate.ink/",
-  "sideEffects": false
+  "devDependencies": {
+    "@types/bun": "^1.2.8",
+    "@vexcited/eslint-config": "^0.1.1",
+    "dotenv": "^16.4.7",
+    "eslint": "^9.24.0",
+    "jiti": "^2.4.2",
+    "terser": "^5.39.0",
+    "tsup": "^8.4.0",
+    "typescript": "^5.8.3"
+  }
 }

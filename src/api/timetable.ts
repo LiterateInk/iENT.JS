@@ -1,12 +1,12 @@
-import { defaultFetcher, type Fetcher } from "@literate.ink/utilities";
-import * as cheerio from "cheerio";
-
 import type { Metadata, Timetable } from "~/models";
+import { defaultFetcher, type Fetcher } from "@literate.ink/utilities";
+
+import * as cheerio from "cheerio";
 
 import { decodeMetadata } from "~/decoders/metadata";
 import { decodeTimetable } from "~/decoders/timetable";
 
-export type TimetableResponse = { readonly metadata: Metadata } & Timetable;
+export type TimetableResponse = Timetable & { readonly metadata: Metadata };
 
 /**
  * @param sessionID your session token

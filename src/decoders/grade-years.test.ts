@@ -1,8 +1,8 @@
+import type { GradeYear } from "~/models/grade-year";
 import grades from "!/Notes.2.html" with { type: "text" };
 import { expect, test } from "bun:test";
-import * as cheerio from "cheerio";
 
-import { GradeYear } from "~/models/grade-year";
+import * as cheerio from "cheerio";
 
 import { decodeGradeYears } from "./grade-years";
 

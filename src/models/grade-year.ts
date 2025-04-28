@@ -1,5 +1,5 @@
-export type GradeYear = {
-  isDefault: boolean
-  label: string,
-  number: number,
-};
+export interface GradeYear {
+  isDefault: boolean;
+  label: string;
+  number: number;
+}

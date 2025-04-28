@@ -1,6 +1,6 @@
-import { Cheerio, CheerioAPI } from "cheerio";
+import type { Cheerio, CheerioAPI } from "cheerio";
 
-import { GradeYear } from "~/models/grade-year";
+import type { GradeYear } from "~/models/grade-year";
 
 export const decodeGradeYear = ($: CheerioAPI, container: Cheerio<any>): GradeYear => {
   const number = Number.parseInt(container.attr()!["value"]);

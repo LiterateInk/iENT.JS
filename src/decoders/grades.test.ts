@@ -1,9 +1,9 @@
+import type { Grade, Subject } from "~/models";
 import grades from "!/Notes.2.html" with { type: "text" };
 import gradesEmpty from "!/Notes.empty.html" with { type: "text" };
 import { expect, test } from "bun:test";
-import * as cheerio from "cheerio";
 
-import { Grade, Subject } from "~/models";
+import * as cheerio from "cheerio";
 
 import { decodeGrades } from "./grades";
 
@@ -44,7 +44,7 @@ test("decodeGrades", () => {
         coefficient: 2,
         date: new Date(2022, 10, 18),
         outOf: 20,
-        //@ts-expect-error
+        // @ts-expect-error
         subject: undefined,
         title: "Evaluation chapitre 1",
         type: "Contrôle",
@@ -56,7 +56,7 @@ test("decodeGrades", () => {
         coefficient: 1,
         date: new Date(2023, 0, 30),
         outOf: 20,
-        //@ts-expect-error
+        // @ts-expect-error
         subject: undefined,
         title: "Participation travaux de groupe",
         type: "Contrôle",
@@ -68,7 +68,7 @@ test("decodeGrades", () => {
         coefficient: 1,
         date: new Date(2023, 0, 4),
         outOf: 20,
-        //@ts-expect-error
+        // @ts-expect-error
         subject: undefined,
         title: "Budget1",
         type: "Contrôle",
@@ -77,7 +77,7 @@ test("decodeGrades", () => {
         coefficient: 1,
         date: new Date(2023, 2, 31),
         outOf: 20,
-        //@ts-expect-error
+        // @ts-expect-error
         subject: undefined,
         title: "Budget2",
         type: "Contrôle",
@@ -89,7 +89,7 @@ test("decodeGrades", () => {
         coefficient: 1,
         date: new Date(2022, 8, 17),
         outOf: 20,
-        //@ts-expect-error
+        // @ts-expect-error
         subject: undefined,
         title: "Carte",
         type: "Contrôle",
@@ -98,7 +98,7 @@ test("decodeGrades", () => {
         coefficient: 1,
         date: new Date(2022, 10, 11),
         outOf: 20,
-        //@ts-expect-error
+        // @ts-expect-error
         subject: undefined,
         title: "Questions pour un champion",
         type: "Contrôle",
@@ -110,7 +110,7 @@ test("decodeGrades", () => {
         coefficient: 1,
         date: new Date(2022, 10, 7),
         outOf: 20,
-        //@ts-expect-error
+        // @ts-expect-error
         subject: undefined,
         title: "contrôle 1",
         type: "Contrôle",
@@ -119,7 +119,7 @@ test("decodeGrades", () => {
         coefficient: 1,
         date: new Date(2022, 10, 18),
         outOf: 20,
-        //@ts-expect-error
+        // @ts-expect-error
         subject: undefined,
         title: "contrôle 2",
         type: "Contrôle",

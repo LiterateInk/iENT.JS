@@ -1,7 +1,7 @@
-import { defaultFetcher, type Fetcher, getCookiesFromResponse, getHeaderFromResponse } from "@literate.ink/utilities";
-import { base64 } from "@scure/base";
-
 import type { ProfileKind } from "~/models";
+import { defaultFetcher, type Fetcher, getCookiesFromResponse, getHeaderFromResponse } from "@literate.ink/utilities";
+
+import { base64 } from "@scure/base";
 
 /**
  * @returns the session ID
@@ -35,7 +35,7 @@ export const login = async (profileKind: ProfileKind, username: string, password
       content: form.toString(),
       headers: {
         "Content-Type": "application/x-www-form-urlencoded",
-        Cookie: `ient=${sessionID}`
+        "Cookie": `ient=${sessionID}`
       },
       method: "POST",
       redirect: "manual",

@@ -1,6 +1,6 @@
-import { CheerioAPI } from "cheerio";
+import type { CheerioAPI } from "cheerio";
 
-import { GradeYear } from "~/models/grade-year";
+import type { GradeYear } from "~/models/grade-year";
 
 import { decodeGradeYear } from "./grade-year";
 

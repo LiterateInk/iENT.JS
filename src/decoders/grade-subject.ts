@@ -1,6 +1,7 @@
 import type { Cheerio, CheerioAPI } from "cheerio";
 
-import { Grade, Subject } from "~/models";
+import type { Subject } from "~/models";
+import { Grade } from "~/models";
 
 import { decodeGrade } from "./grade";
 

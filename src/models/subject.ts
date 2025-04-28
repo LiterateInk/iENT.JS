@@ -1,7 +1,7 @@
-import { Grade } from "./grade";
+import type { Grade } from "./grade";
 
-export type Subject = {
-  grades: Grade[]
-  name: string,
-  teacherName: string,
-};
+export interface Subject {
+  grades: Grade[];
+  name: string;
+  teacherName: string;
+}
