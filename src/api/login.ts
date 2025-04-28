@@ -37,7 +37,7 @@ export const login = async (profileKind: ProfileKind, username: string, password
       .setUrlSearchParameter("service", callback)
       .setRedirection(HttpRequest.Redirection.MANUAL)
       .setCookie("ient", sessionId)
-      .setSearchParamsBody(form)
+      .setFormUrlEncodedBody(form)
       .build();
 
     const response = await send(request);

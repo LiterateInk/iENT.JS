@@ -1,6 +1,6 @@
 import type { CheerioAPI } from "cheerio";
 
-import type { Timetable, TimetableDay, TimetableEvent } from "~/models";
+import type { Timetable, TimetableDay } from "~/models";
 
 import { mapHoursToDate } from "~/core/map-hours-to-date";
 import { onlyNumbers } from "~/core/only-numbers";

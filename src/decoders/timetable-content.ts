@@ -1,11 +1,12 @@
 import type { Cheerio, CheerioAPI } from "cheerio";
+import type { Element } from "domhandler";
 
 import type { TimetableEvent } from "~/models";
 
 import { nearest } from "~/core/nearest";
 import { onlyNumbers } from "~/core/only-numbers";
 
-export const decodeTimetableContent = ($: CheerioAPI, container: Cheerio<any>, slots: number[], hours: Date[]): Array<TimetableEvent> => {
+export const decodeTimetableContent = ($: CheerioAPI, container: Cheerio<Element>, slots: number[], hours: Date[]): Array<TimetableEvent> => {
   const events: Array<TimetableEvent> = [];
 
   container.find(".div_jour").children(".sequence").each((_, element) => {
