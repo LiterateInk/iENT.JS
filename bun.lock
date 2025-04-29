@@ -7,7 +7,7 @@
         "@scure/base": "^1.2.4",
         "cheerio": "^1.0.0",
         "domhandler": "^5.0.3",
-        "schwi": "^0.3.0",
+        "schwi": "^0.3.1",
       },
       "devDependencies": {
         "@types/bun": "^1.2.8",
@@ -478,7 +478,7 @@
 
     "safer-buffer": ["safer-buffer@2.1.2", "", {}, "sha512-YZo3K82SD7Riyi0E1EQPojLz7kpepnSQI9IyPbHHg1XXXevb5dJI7tpyN2ADxGcQbHG7vcyRHk0cbwqcQriUtg=="],
 
-    "schwi": ["schwi@0.3.0", "", { "dependencies": { "undici": "^7.8.0" }, "optionalDependencies": { "@tauri-apps/plugin-http": "~2.4.3", "cheerio": "^1.0.0" } }, "sha512-x2QG2lK3DaGeWcIPFM7lL4qBhSGcKaG7KdKJd23d7eIOiTy8oUF9eJs13NpOwNBgvLOeA1RjNOaQzPwqoFcuSQ=="],
+    "schwi": ["schwi@0.3.1", "", { "dependencies": { "undici": "^7.8.0" }, "optionalDependencies": { "@tauri-apps/plugin-http": "~2.4.3", "cheerio": "^1.0.0" } }, "sha512-g/kFuH57w1NaHYn3hiH7+VHGTw2Cpn6PcWDkDKsCXVQTGesY4L2Em+Blm5D7WqIkY87cGMCNjrF9wEimppofcA=="],
 
     "semver": ["semver@7.7.1", "", { "bin": { "semver": "bin/semver.js" } }, "sha512-hlq8tAfn0m/61p4BVRcPzIGr6LKiMwo4VM6dGi6pt4qcRkmNzTcWq6eCEjEh+qXjkMDvPlOFFSGwQjoEa6gyMA=="],
 
